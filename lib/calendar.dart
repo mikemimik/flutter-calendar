@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 import 'month.dart';
 import 'week.dart';
 import 'day.dart';
@@ -80,15 +81,29 @@ class Calendar extends StatelessWidget {
     }
 
     return new Container(
-        constraints: new BoxConstraints(),
-        margin: new EdgeInsets.all(8.0),
-        child: new Column(
-            children: <Widget>[
-              // TODO: turn this into a specific appbar
-              new Text(_months[_month - 1]['long']),
-              new Month(year: _year, month: _month, weeks: monthWeeks)
-            ]
-        ),
-        );
+      constraints: new BoxConstraints(),
+      margin: new EdgeInsets.all(8.0),
+      child: new Column(
+        children: <Widget>[
+          new CalendarHeader(monthName: _months[_month - 1]['long']),
+          new Month(year: _year, month: _month, weeks: monthWeeks)
+        ]
+      ),
+    );
+  }
+}
+
+class CalendarHeader extends StatelessWidget {
+  CalendarHeader({ @required monthName }) {
+    this._month = monthName;
+  }
+  String _month;
+  
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      margin: new EdgeInsets.only(top: 5.0, bottom: 10.0),
+      child: new Text(_month)
+    );
   }
 }
