@@ -1,0 +1,5 @@
+name: calendar
+description: A new flutter project.
+dependencies:
+  flutter:
+    sdk: flutter
