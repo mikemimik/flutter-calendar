@@ -32,12 +32,8 @@ class EventCalendarRow extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return new Align(
-      alignment: FractionalOffset.bottomCenter,
-      heightFactor: 2.5,
-      child: new Row(
-        children: eventIcons
-      )
+    return new Row(
+      children: eventIcons
     );
   }
 }
