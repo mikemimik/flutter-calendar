@@ -21,36 +21,34 @@ class Day extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return new Flexible(
-      child: new InkWell(
-        onTap: _gotTap,
-        child: new Container(
-          height: 60.0,
-          decoration: new BoxDecoration(
-            border: new Border.all(
-              color: Colors.black,
-              width: 0.5
-            )
-          ),
-          padding: new EdgeInsets.all(4.0),
-          child: new Column(
-            children: <Widget>[
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  new Text(date.toString())
-                ],
-              ),
-              new Padding(
-                padding: new EdgeInsets.only(top: 20.0),
-                child: new EventCalendarRow(eventIcons: _generateEventIcons())
-              ),
-              new Padding(
-                padding: new EdgeInsets.only(top: 1.0),
-                  child: new EventCalendarRow(eventIcons: _generateEventIcons())
-              )
-            ]
+    return new InkWell(
+      onTap: _gotTap,
+      child: new Container(
+//        height: 60.0,
+        decoration: new BoxDecoration(
+          border: new Border.all(
+            color: Colors.black,
+            width: 0.5
           )
+        ),
+        padding: new EdgeInsets.all(4.0),
+        child: new Column(
+          children: <Widget>[
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                new Text(date.toString())
+              ],
+            ),
+            new Padding(
+              padding: new EdgeInsets.only(top: 20.0),
+              child: new EventCalendarRow(eventIcons: _generateEventIcons())
+            ),
+            new Padding(
+              padding: new EdgeInsets.only(top: 1.0),
+                child: new EventCalendarRow(eventIcons: _generateEventIcons())
+            )
+          ]
         )
       )
     );
@@ -63,20 +61,15 @@ class HeaderDay extends Day {
 
   @override
   Widget build(BuildContext context) {
-    return new Flexible(
-        child: new Container(
-            decoration: new BoxDecoration(
-                border: new Border.all(
-                    color: Colors.black,
-                    width: 0.5
-                )
-            ),
-            padding: new EdgeInsets.all(4.0),
-            child: new GestureDetector(
-                onTap: _gotTap,
-                child: new Text(day)
-            )
+    return new Container(
+      decoration: new BoxDecoration(
+        border: new Border.all(
+          color: Colors.black,
+          width: 0.5
         )
+      ),
+      padding: new EdgeInsets.all(4.0),
+      child: new Text(day)
     );
   }
 }
