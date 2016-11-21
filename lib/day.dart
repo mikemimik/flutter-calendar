@@ -34,7 +34,6 @@ class Day extends StatelessWidget {
           ),
           padding: new EdgeInsets.all(4.0),
           child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               new Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -42,8 +41,14 @@ class Day extends StatelessWidget {
                   new Text(date.toString())
                 ],
               ),
-              new EventCalendarRow(eventIcons: _generateEventIcons()),
-              new EventCalendarRow(eventIcons: _generateEventIcons())
+              new Padding(
+                padding: new EdgeInsets.only(top: 20.0),
+                child: new EventCalendarRow(eventIcons: _generateEventIcons())
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 1.0),
+                  child: new EventCalendarRow(eventIcons: _generateEventIcons())
+              )
             ]
           )
         )
