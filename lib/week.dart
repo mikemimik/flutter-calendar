@@ -27,7 +27,7 @@ class HeaderWeek extends Week {
   @override
   Widget build(BuildContext context) {
     return new Row(
-        children: _days
+      children: _days
     );
   }
 }
