@@ -10,9 +10,7 @@ class Calendar extends StatelessWidget {
     this._year = _initializeDate.year;
     this._month = _initializeDate.month;
   }
-  DateTime _initializeDate;
-  int _year;
-  int _month;
+  
   static final _months = {
     0: { 'short': 'Jan', 'long': 'January' },
     1: { 'short': 'Feb', 'long': 'February' },
@@ -27,8 +25,14 @@ class Calendar extends StatelessWidget {
     10: { 'short': 'Nov', 'long': 'November' },
     11: { 'short': 'Dec', 'long': 'December' }
   };
-
-  List<Day> _generateMonthDays({ DateTime firstDay, DateTime lastDay }) {
+  
+  DateTime _initializeDate;
+  int _year;
+  int _month;
+  
+  
+  
+  List<Day> _generateMonthDays({ @required DateTime firstDay, @required DateTime lastDay }) {
     List<Day> days = <Day>[];
     for (int i = firstDay.day; i <= lastDay.day; i++) {
       days.add(new Day(date: i));
