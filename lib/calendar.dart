@@ -36,8 +36,26 @@ class Calendar extends StatelessWidget {
     return days;
   }
 
-  List<Day> _generateMonthPadding() {
+  List<Day> _generateMonthPadding({ DateTime firstDay, DateTime lastDay }) {
     List<Day> days = <Day>[];
+    if (firstDay != null) {
+      // INFO: build month padding - beginning
+      var firstWeekday = firstDay.weekday;
+      DateTime lastDayPrevMonth = new DateTime(_year, _month, 0);
+      if (firstWeekday < 7) { // ignore if sunday (no padding needed)
+        for (var i = 0; i < firstWeekday; i++) {
+          days.insert(0, new Day(date: lastDayPrevMonth.day - i));
+        }
+      }
+    } else if (lastDay != null) {
+      // INFO: build month padding - ending
+      var lastWeekday = lastDay.weekday;
+      DateTime firstDayNextMonth = new DateTime(_year, _month + 1, 1);
+      var remainingDays = (6 - lastWeekday == -1) ? 6 : (6 - lastWeekday);
+      for (var i = 0; i < remainingDays; i++) {
+        days.add(new Day(date: firstDayNextMonth.day + i));
+      }
+    }
     return days;
   }
 
@@ -54,21 +72,10 @@ class Calendar extends StatelessWidget {
     List<Day> monthDays = _generateMonthDays(firstDay: _firstDay, lastDay: _lastDay);
 
     // INFO: build month padding - beginning
-    var firstWeekday = _firstDay.weekday;
-    DateTime lastDayPrevMonth = new DateTime(_year, _month, 0);
-    if (firstWeekday < 7) { // ignore if sunday (no padding needed)
-      for (var i = 0; i < firstWeekday; i++) {
-        monthDays.insert(0, new Day(date: lastDayPrevMonth.day - i));
-      }
-    }
-
+    monthDays.insertAll(0, _generateMonthPadding(firstDay: _firstDay));
+    
     // INFO: build month padding - ending
-    var lastWeekday = _lastDay.weekday;
-    DateTime firstDayNextMonth = new DateTime(_year, _month + 1, 1);
-    var remainingDays = (6 - lastWeekday == -1) ? 6 : (6 - lastWeekday);
-    for (var i = 0; i < remainingDays; i++) {
-      monthDays.add(new Day(date: firstDayNextMonth.day + i));
-    }
+    monthDays.addAll(_generateMonthPadding(lastDay: _lastDay));
 
     // INFO: generate weeks in this month
     List<Week> monthWeeks = new List<Week>();
