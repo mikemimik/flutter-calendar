@@ -14,7 +14,7 @@ class Day extends StatelessWidget {
   List<EventCalendarIcon> _generateEventIcons() {
     List<EventCalendarIcon> eventIcons = <EventCalendarIcon>[];
     for (var i = 0; i < 4; i++) {
-      eventIcons.add(new EventCalendarIcon(submitted: (i % 2 == 0) ? true : false));
+      eventIcons.add(new EventCalendarIcon(color: Colors.blue[500]));
     }
     return eventIcons;
   }
