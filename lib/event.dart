@@ -9,10 +9,9 @@ class EventItem extends StatelessWidget {
 }
 
 class EventCalendarIcon extends StatelessWidget {
-  EventCalendarIcon({ @required bool this.submitted });
-  bool submitted;
+  EventCalendarIcon({ @required Color this.color });
+  final Color color;
   
-  // TODO: create a flag for completed or not
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -20,7 +19,7 @@ class EventCalendarIcon extends StatelessWidget {
       width: 5.0,
       margin: new EdgeInsets.all(0.5),
       decoration: new BoxDecoration(
-        backgroundColor: (submitted) ? Colors.green[500] : Colors.red[500]
+        backgroundColor: color
       )
     );
   }
