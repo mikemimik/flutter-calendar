@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'calendar.dart';
 
 void main() {
+  debugPaintSizeEnabled = true;
   runApp(
     new MaterialApp(
       title: 'calendar',
