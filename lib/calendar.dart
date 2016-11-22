@@ -30,8 +30,6 @@ class Calendar extends StatelessWidget {
   int _year;
   int _month;
   
-  
-  
   List<Day> _generateMonthDays({ @required DateTime firstDay, @required DateTime lastDay }) {
     List<Day> days = <Day>[];
     for (int i = firstDay.day; i <= lastDay.day; i++) {
