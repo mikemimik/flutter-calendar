@@ -93,8 +93,8 @@ class Calendar extends StatelessWidget {
 
     // INFO: generate weeks in this month
     List<Week> monthWeeks = _generateMonthWeeks(monthDays: monthDays);
-
-    return new Container(
+    
+    Widget component = new Container(
       constraints: new BoxConstraints(),
       margin: new EdgeInsets.all(8.0),
       child: new Column(
@@ -104,6 +104,8 @@ class Calendar extends StatelessWidget {
         ]
       ),
     );
+    
+    return new Material(child: component);
   }
 }
 
