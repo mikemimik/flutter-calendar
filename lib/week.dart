@@ -11,10 +11,12 @@ class Week extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // create seven days
-    return new Row(
-        children: _days
+    
+    Widget component = new Row(
+      children: _days
     );
+    
+    return component;
   }
 }
 
@@ -26,8 +28,11 @@ class HeaderWeek extends Week {
 
   @override
   Widget build(BuildContext context) {
-    return new Row(
+    
+    Widget component = new Row(
       children: _days
     );
+    
+    return component;
   }
 }
