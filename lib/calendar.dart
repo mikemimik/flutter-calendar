@@ -116,9 +116,12 @@ class CalendarHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-//      height: 40.0,
+      height: 40.0,
       margin: new EdgeInsets.only(top: 5.0, bottom: 10.0),
-      child: new Text(_month)
+      child: new Align(
+        alignment: FractionalOffset.center,
+        child: new Text(_month)
+      )
     );
   }
 }
