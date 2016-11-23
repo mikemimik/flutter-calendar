@@ -60,6 +60,18 @@ class Calendar extends StatelessWidget {
     }
     return days;
   }
+  
+  List<Week> _generateMonthWeeks({ @required List<Day> monthDays }){
+    List<Week> monthWeeks = new List<Week>();
+    for (var weeknum = 0; weeknum < (monthDays.length / 7); weeknum++) {
+      List<Day> weekDays = new List<Day>();
+      for (var weekday = (weeknum * 7); weekday < (weeknum * 7) + 7; weekday++) {
+        weekDays.add(monthDays[weekday]);
+      }
+      monthWeeks.add(new Week(days: weekDays));
+    }
+    return monthWeeks;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,14 +92,7 @@ class Calendar extends StatelessWidget {
     monthDays.addAll(_generateMonthPadding(lastDay: _lastDay));
 
     // INFO: generate weeks in this month
-    List<Week> monthWeeks = new List<Week>();
-    for (var weeknum = 0; weeknum < (monthDays.length / 7); weeknum++) {
-      List<Day> weekDays = new List<Day>();
-      for (var weekday = (weeknum * 7); weekday < (weeknum * 7) + 7; weekday++) {
-        weekDays.add(monthDays[weekday]);
-      }
-      monthWeeks.add(new Week(days: weekDays));
-    }
+    List<Week> monthWeeks = _generateMonthWeeks(monthDays: monthDays);
 
     return new Container(
       constraints: new BoxConstraints(),
