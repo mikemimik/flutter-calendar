@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'event.dart';
-
-enum CalendarView {
-  calendar,
-  event
-}
+import 'view_types.dart';
 
 class Day extends StatelessWidget {
   Day({

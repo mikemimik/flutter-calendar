@@ -3,11 +3,7 @@ import 'package:meta/meta.dart';
 import 'month.dart';
 import 'week.dart';
 import 'day.dart';
-
-enum CalendarView {
-  calendar,
-  event
-}
+import 'view_types.dart';
 
 class Calendar extends StatefulWidget {
   factory Calendar({
