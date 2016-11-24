@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'calendar_view.dart';
 import 'month.dart';
 import 'week.dart';
 import 'day.dart';
@@ -132,19 +133,14 @@ class CalendarState extends State<Calendar> {
     
     Widget component;
     switch (_currentView) {
-      case CalendarView.calendar:
-        component = new Container(
-          constraints: new BoxConstraints(),
-          margin: new EdgeInsets.all(8.0),
-          child: new Column(
-            children: <Widget>[
-              new CalendarHeader(monthName: _months[config._month - 1]['long']),
-              new Month(year: config._year, month: config._month, weeks: monthWeeks)
-            ]
-          )
+      case RenderableViews.calendar:
+        component = new CalendarView(
+          year: config._year,
+          month: config._month,
+          switchViewCallback: _switchViewEvent
         );
         break;
-      case CalendarView.event:
+      case RenderableViews.event:
         component = new Container(
         constraints: new BoxConstraints(),
         margin: new EdgeInsets.all(8.0),
