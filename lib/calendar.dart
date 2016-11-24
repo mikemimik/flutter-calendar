@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'view.calendar.dart';
+import 'view.event.dart';
 import 'view_types.dart';
 
 class Calendar extends StatefulWidget {
@@ -77,25 +78,11 @@ class CalendarState extends State<Calendar> {
         );
         break;
       case RenderableView.event:
-        component = new Container(
-        constraints: new BoxConstraints(),
-        margin: new EdgeInsets.all(8.0),
-        child: new Center(
-          child: new Column(
-            children: <Widget>[
-                new Text('Day: ' + _months[config._month]['long'] + ' $_eventDate, ' + config.year),
-                new Container(
-                  padding: new EdgeInsets.all(8.0),
-                  child: new RaisedButton(
-                    child: new Text('back to calendar'),
-                    onPressed: () {
-                      _switchViewCalendar();
-                    }
-                  )
-                )
-              ]
-            )
-          )
+        component = new EventView(
+          year: config._year,
+          month: config._month,
+          day: _eventDate,
+          switchViewCallback: _switchViewCalendar
         );
         break;
     }
