@@ -8,3 +8,4 @@
 
 ### Day class
 - needs a way to generate the event icons (create a function for this)
+- check to see if callback was passed to constructor, if not, pass noop function
