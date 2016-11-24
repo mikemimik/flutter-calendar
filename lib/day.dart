@@ -33,7 +33,9 @@ class Day extends StatelessWidget {
   Widget build(BuildContext context) {
     
     Widget component = new InkWell(
-      onTap: viewCallback,
+      onTap: () {
+        viewCallback(date: this.date);
+      },
       child: new Container(
         height: 60.0,
         decoration: new BoxDecoration(

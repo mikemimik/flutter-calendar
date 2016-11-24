@@ -69,8 +69,8 @@ class CalendarState extends State<Calendar> {
     });
   }
   
-  _switchViewEvent() {
-    print('inside _switchViewEvent');
+  _switchViewEvent({ int date }) {
+    print('inside _switchViewEvent: $date');
     setState(() {
       _currentView = CalendarView.event;
     });
