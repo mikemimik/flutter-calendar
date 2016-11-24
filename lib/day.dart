@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'event.dart';
 
+enum CalendarView {
+  calendar,
+  event
+}
+
 class Day extends StatelessWidget {
-  Day({ int this.date });
+  Day({
+    @required int this.date,
+    this.viewCallback
+  });
 
   final int date;
-
+  final viewCallback;
+  
   void _gotTap () {
     print('sup bro');
     print(this.date);
@@ -24,7 +33,7 @@ class Day extends StatelessWidget {
   Widget build(BuildContext context) {
     
     Widget component = new InkWell(
-      onTap: _gotTap,
+      onTap: viewCallback,
       child: new Container(
         height: 60.0,
         decoration: new BoxDecoration(
