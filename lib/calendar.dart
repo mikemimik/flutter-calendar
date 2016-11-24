@@ -21,13 +21,16 @@ class Calendar extends StatefulWidget {
   
   final int _year;
   final int _month;
-
+  String get year => _year.toString();
+  String get month => _month.toString();
+  
   @override
   CalendarState createState() => new CalendarState();
 }
 
 class CalendarState extends State<Calendar> {
   CalendarView _currentView = CalendarView.calendar;
+  int _eventDate;
   
   static final _months = {
     0: { 'short': 'Jan', 'long': 'January' },
@@ -55,6 +58,7 @@ class CalendarState extends State<Calendar> {
     print('inside _switchViewEvent: $date');
     setState(() {
       _currentView = CalendarView.event;
+      _eventDate = date;
     });
   }
   
@@ -133,7 +137,6 @@ class CalendarState extends State<Calendar> {
     Widget component;
     switch (_currentView) {
       case CalendarView.calendar:
-        print('view: calendar');
         component = new Container(
           constraints: new BoxConstraints(),
           margin: new EdgeInsets.all(8.0),
@@ -146,20 +149,24 @@ class CalendarState extends State<Calendar> {
         );
         break;
       case CalendarView.event:
-        print('view: event');
         component = new Container(
-          constraints: new BoxConstraints(),
-          margin: new EdgeInsets.all(8.0),
+        constraints: new BoxConstraints(),
+        margin: new EdgeInsets.all(8.0),
+        child: new Center(
           child: new Column(
             children: <Widget>[
-              new Text('hello from event view'),
-              new RaisedButton(
-                child: new Text('back to calendar'),
-                onPressed: () {
-                  _switchViewCalendar();
-                }
-              )
-            ]
+                new Text('Day: ' + _months[config._month]['long'] + ' $_eventDate, ' + config.year),
+                new Container(
+                  padding: new EdgeInsets.all(8.0),
+                  child: new RaisedButton(
+                    child: new Text('back to calendar'),
+                    onPressed: () {
+                      _switchViewCalendar();
+                    }
+                  )
+                )
+              ]
+            )
           )
         );
         break;
