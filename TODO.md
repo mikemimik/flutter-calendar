@@ -9,3 +9,8 @@
 ### Day class
 - needs a way to generate the event icons (create a function for this)
 - check to see if callback was passed to constructor, if not, pass noop function
+
+
+### ViewTypes class
+- create class to contain constants rather than just importing a file with variables
+- rename file to more appropriate name
