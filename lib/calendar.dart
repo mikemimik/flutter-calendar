@@ -25,7 +25,7 @@ class Calendar extends StatefulWidget {
 }
 
 class CalendarState extends State<Calendar> {
-  CalendarView _currentView = CalendarView.calendar;
+  RenderableViews _currentView = RenderableViews.calendar;
   int _eventDate;
   
   static final _months = {
@@ -46,14 +46,14 @@ class CalendarState extends State<Calendar> {
   _switchViewCalendar() {
     print('inside _switchViewCalendar');
     setState(() {
-      _currentView = CalendarView.calendar;
+      _currentView = RenderableViews.calendar;
     });
   }
   
   _switchViewEvent({ int date }) {
     print('inside _switchViewEvent: $date');
     setState(() {
-      _currentView = CalendarView.event;
+      _currentView = RenderableViews.event;
       _eventDate = date;
     });
   }
@@ -62,7 +62,7 @@ class CalendarState extends State<Calendar> {
   void initState() {
     super.initState();
     setState(() {
-      _currentView = CalendarView.calendar;
+      _currentView = RenderableViews.calendar;
     });
   }
 
