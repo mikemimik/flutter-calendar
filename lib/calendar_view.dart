@@ -75,7 +75,7 @@ class CalendarView extends StatelessWidget {
       margin: new EdgeInsets.all(8.0),
       child: new Column(
         children: <Widget>[
-          new CalendarHeader(monthName: MonthNames[month - 1]['long']),
+          new CalendarViewHeader(monthName: MonthNames[month - 1]['long']),
           new Month(year: year, month: month, weeks: monthWeeks)
         ]
       )
@@ -84,11 +84,10 @@ class CalendarView extends StatelessWidget {
   }
 }
 
-class CalendarHeader extends StatelessWidget {
-  CalendarHeader({ @required monthName }) {
-    this._month = monthName;
-  }
-  String _month;
+class CalendarViewHeader extends StatelessWidget {
+  CalendarViewHeader({ @required String this.monthName });
+  
+  final String monthName;
   
   @override
   Widget build(BuildContext context) {
@@ -97,7 +96,7 @@ class CalendarHeader extends StatelessWidget {
       margin: new EdgeInsets.only(top: 5.0, bottom: 10.0),
       child: new Align(
         alignment: FractionalOffset.center,
-        child: new Text(_month)
+        child: new Text(monthName)
       )
     );
   }
