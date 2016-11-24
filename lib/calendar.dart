@@ -67,69 +67,8 @@ class CalendarState extends State<Calendar> {
     });
   }
 
-  List<Day> _generateMonthDays({ @required DateTime firstDay, @required DateTime lastDay }) {
-    List<Day> days = <Day>[];
-    for (int i = firstDay.day; i <= lastDay.day; i++) {
-      days.add(new Day(date: i, viewCallback: _switchViewEvent));
-    }
-    return days;
-  }
-
-  List<Day> _generateMonthPadding({ DateTime firstDay, DateTime lastDay }) {
-    List<Day> days = <Day>[];
-    if (firstDay != null) {
-      // INFO: build month padding - beginning
-      var firstWeekday = firstDay.weekday;
-      DateTime lastDayPrevMonth = new DateTime(config._year, config._month, 0);
-      if (firstWeekday < 7) { // ignore if sunday (no padding needed)
-        for (var i = 0; i < firstWeekday; i++) {
-          days.insert(0, new Day(date: lastDayPrevMonth.day - i));
-        }
-      }
-    } else if (lastDay != null) {
-      // INFO: build month padding - ending
-      var lastWeekday = lastDay.weekday;
-      DateTime firstDayNextMonth = new DateTime(config._year, config._month + 1, 1);
-      var remainingDays = (6 - lastWeekday == -1) ? 6 : (6 - lastWeekday);
-      for (var i = 0; i < remainingDays; i++) {
-        days.add(new Day(date: firstDayNextMonth.day + i));
-      }
-    }
-    return days;
-  }
-
-  List<Week> _generateMonthWeeks({ @required List<Day> monthDays }){
-    List<Week> monthWeeks = new List<Week>();
-    for (var weeknum = 0; weeknum < (monthDays.length / 7); weeknum++) {
-      List<Day> weekDays = new List<Day>();
-      for (var weekday = (weeknum * 7); weekday < (weeknum * 7) + 7; weekday++) {
-        weekDays.add(monthDays[weekday]);
-      }
-      monthWeeks.add(new Week(days: weekDays));
-    }
-    return monthWeeks;
-  }
-
   @override
   Widget build(BuildContext context) {
-  
-    // INFO: build all `Day`s in month
-    // - get first day of month - for indexing
-    DateTime _firstDay = new DateTime(config._year, config._month, 1);
-    // - get last day of month - for indexing
-    DateTime _lastDay = new DateTime(config._year, config._month + 1, 0);
-  
-    // INFO: create days in the month
-    List<Day> monthDays = _generateMonthDays(firstDay: _firstDay, lastDay: _lastDay);
-  
-    // INFO: build month padding - beginning
-    monthDays.insertAll(0, _generateMonthPadding(firstDay: _firstDay));
-  
-    // INFO: build month padding - ending
-    monthDays.addAll(_generateMonthPadding(lastDay: _lastDay));
-  
-    // INFO: generate weeks in this month
-    List<Week> monthWeeks = _generateMonthWeeks(monthDays: monthDays);
     
     Widget component;
     switch (_currentView) {
@@ -165,24 +104,5 @@ class CalendarState extends State<Calendar> {
     }
     return new Material(child: component);
     
-  }
-}
-
-class CalendarHeader extends StatelessWidget {
-  CalendarHeader({ @required monthName }) {
-    this._month = monthName;
-  }
-  String _month;
-  
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      height: 40.0,
-      margin: new EdgeInsets.only(top: 5.0, bottom: 10.0),
-      child: new Align(
-        alignment: FractionalOffset.center,
-        child: new Text(_month)
-      )
-    );
   }
 }
