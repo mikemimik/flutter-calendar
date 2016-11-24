@@ -1,5 +1,5 @@
 
-enum RenderableViews { calendar, event }
+enum RenderableView { calendar, event }
 
 Map<int, Map<String, String>> MonthNames = {
   0: { 'short': 'Jan', 'long': 'January' },
