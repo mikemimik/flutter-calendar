@@ -10,41 +10,23 @@ enum CalendarView {
 }
 
 class Calendar extends StatefulWidget {
-  Calendar({
+  factory Calendar({
     DateTime initializeDate
   }) {
-    this._initializeDate = (initializeDate == null) ? new DateTime.now() : initializeDate;
-    this._year = _initializeDate.year;
-    this._month = _initializeDate.month;
+    DateTime date = (initializeDate == null) ? new DateTime.now() : initializeDate;
+    return new Calendar._internal(date.year, date.month);
   }
-
-  DateTime _initializeDate;
-  int _year;
-  int _month;
+  
+  Calendar._internal(this._year, this._month);
+  
+  final int _year;
+  final int _month;
 
   @override
-  CalendarState createState() => new CalendarState(
-    date: _initializeDate,
-    year: _year,
-    month: _month
-  );
+  CalendarState createState() => new CalendarState();
 }
 
 class CalendarState extends State<Calendar> {
-  CalendarState({
-    DateTime date,
-    int year,
-    int month
-  }) {
-    this._date = date;
-    this._year = year;
-    this._month = month;
-  }
-  
-  DateTime _date;
-  int _year;
-  int _month;
-
   CalendarView _currentView = CalendarView.calendar;
   
   static final _months = {
@@ -97,7 +79,7 @@ class CalendarState extends State<Calendar> {
     if (firstDay != null) {
       // INFO: build month padding - beginning
       var firstWeekday = firstDay.weekday;
-      DateTime lastDayPrevMonth = new DateTime(_year, _month, 0);
+      DateTime lastDayPrevMonth = new DateTime(config._year, config._month, 0);
       if (firstWeekday < 7) { // ignore if sunday (no padding needed)
         for (var i = 0; i < firstWeekday; i++) {
           days.insert(0, new Day(date: lastDayPrevMonth.day - i));
@@ -106,7 +88,7 @@ class CalendarState extends State<Calendar> {
     } else if (lastDay != null) {
       // INFO: build month padding - ending
       var lastWeekday = lastDay.weekday;
-      DateTime firstDayNextMonth = new DateTime(_year, _month + 1, 1);
+      DateTime firstDayNextMonth = new DateTime(config._year, config._month + 1, 1);
       var remainingDays = (6 - lastWeekday == -1) ? 6 : (6 - lastWeekday);
       for (var i = 0; i < remainingDays; i++) {
         days.add(new Day(date: firstDayNextMonth.day + i));
@@ -132,9 +114,9 @@ class CalendarState extends State<Calendar> {
   
     // INFO: build all `Day`s in month
     // - get first day of month - for indexing
-    DateTime _firstDay = new DateTime(_year, _month, 1);
+    DateTime _firstDay = new DateTime(config._year, config._month, 1);
     // - get last day of month - for indexing
-    DateTime _lastDay = new DateTime(_year, _month + 1, 0);
+    DateTime _lastDay = new DateTime(config._year, config._month + 1, 0);
   
     // INFO: create days in the month
     List<Day> monthDays = _generateMonthDays(firstDay: _firstDay, lastDay: _lastDay);
@@ -157,8 +139,8 @@ class CalendarState extends State<Calendar> {
           margin: new EdgeInsets.all(8.0),
           child: new Column(
             children: <Widget>[
-              new CalendarHeader(monthName: _months[_month - 1]['long']),
-              new Month(year: _year, month: _month, weeks: monthWeeks)
+              new CalendarHeader(monthName: _months[config._month - 1]['long']),
+              new Month(year: config._year, month: config._month, weeks: monthWeeks)
             ]
           )
         );
