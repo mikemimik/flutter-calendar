@@ -6,16 +6,11 @@ import 'view_types.dart';
 class Day extends StatelessWidget {
   Day({
     @required int this.date,
-    this.viewCallback
+    ViewCallback this.viewCallback
   });
 
   final int date;
-  final viewCallback;
-  
-  void _gotTap () {
-    print('sup bro');
-    print(this.date);
-  }
+  final ViewCallback viewCallback;
   
   List<EventCalendarIcon> _generateEventIcons() {
     List<EventCalendarIcon> eventIcons = <EventCalendarIcon>[];

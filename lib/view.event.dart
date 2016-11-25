@@ -7,13 +7,13 @@ class EventView extends StatelessWidget {
     @required int this.year,
     @required int this.month,
     @required int this.day,
-    @required this.switchViewCallback
+    @required ViewCallback this.switchViewCallback
   });
   
   final int year;
   final int month;
   final int day;
-  final switchViewCallback;
+  final ViewCallback switchViewCallback;
   
   @override
   Widget build(BuildContext context) {

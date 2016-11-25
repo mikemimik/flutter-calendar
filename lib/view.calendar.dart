@@ -9,13 +9,13 @@ class CalendarView extends StatelessWidget {
   CalendarView({
     @required int this.year,
     @required int this.month,
-    @required this.switchViewCallback
+    @required ViewCallback this.switchViewCallback
   });
   
   // VARIABLES
   final int year;
   final int month;
-  final switchViewCallback;
+  final ViewCallback switchViewCallback;
   
   // FUNCTIONS
   List<Day> _generateMonthDays({ @required DateTime firstDay, @required DateTime lastDay }) {
