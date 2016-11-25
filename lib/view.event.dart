@@ -29,7 +29,9 @@ class EventView extends StatelessWidget {
               child: new RaisedButton(
                 child: new Text('back to calendar'),
                 onPressed: () {
-                  switchViewCallback();
+                  switchViewCallback(
+                    view: RenderableView.calendar
+                  );
                 }
               )
             )

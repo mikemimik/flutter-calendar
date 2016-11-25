@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 import 'view.calendar.dart';
 import 'view.event.dart';
 import 'view_types.dart';
@@ -24,17 +25,13 @@ class CalendarState extends State<Calendar> {
   RenderableView _currentView = RenderableView.calendar;
   int _eventDate;
   
-  _switchViewCalendar() {
-    print('inside _switchViewCalendar');
+  void _switchView({
+    @required RenderableView view,
+    int date
+  }) {
+    print('inside _switchView: ');
     setState(() {
-      _currentView = RenderableView.calendar;
-    });
-  }
-  
-  _switchViewEvent({ int date }) {
-    print('inside _switchViewEvent: $date');
-    setState(() {
-      _currentView = RenderableView.event;
+      _currentView = view;
       _eventDate = date;
     });
   }
@@ -56,7 +53,7 @@ class CalendarState extends State<Calendar> {
         component = new CalendarView(
           year: config._year,
           month: config._month,
-          switchViewCallback: _switchViewEvent
+          switchViewCallback: _switchView
         );
         break;
       case RenderableView.event:
@@ -64,7 +61,7 @@ class CalendarState extends State<Calendar> {
           year: config._year,
           month: config._month,
           day: _eventDate,
-          switchViewCallback: _switchViewCalendar
+          switchViewCallback: _switchView
         );
         break;
     }
