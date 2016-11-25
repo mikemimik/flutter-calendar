@@ -30,7 +30,12 @@ class Day extends StatelessWidget {
     
     Widget component = new InkWell(
       onTap: () {
-        viewCallback(date: this.date);
+        if (viewCallback != null) {
+          viewCallback(
+            view: RenderableView.event,
+            date: this.date
+          );
+        }
       },
       child: new Container(
         height: 60.0,
