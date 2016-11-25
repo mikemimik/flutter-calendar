@@ -23,7 +23,7 @@ class EventView extends StatelessWidget {
       child: new Center(
         child: new Column(
           children: <Widget>[
-            new Text('Day: ' + MonthNames[month]['long'] + '$day, $year'),
+            new Text('Day: ' + MonthNames[month]['long'] + ' $day, $year'),
             new Container(
               padding: new EdgeInsets.all(8.0),
               child: new RaisedButton(
