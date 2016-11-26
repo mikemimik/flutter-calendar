@@ -4,6 +4,7 @@ import 'view.calendar.dart';
 import 'view.event.dart';
 import 'view_types.dart';
 import 'data.dart';
+import 'day.dart';
 
 class Calendar extends StatefulWidget {
   factory Calendar({
@@ -26,16 +27,16 @@ class Calendar extends StatefulWidget {
 class CalendarState extends State<Calendar> {
   RenderableView _currentView;
   List<CalendarEvent> _events;
-  int _eventDate;
+  Day _selectedDay;
 
   void _switchView({
     @required RenderableView view,
-    int date
+    Day selectedDay
   }) {
-    print('inside _switchView: $date');
+    print('inside _switchView: ${selectedDay}');
     setState(() {
       _currentView = view;
-      _eventDate = date;
+      _selectedDay = selectedDay;
     });
   }
 
@@ -68,7 +69,7 @@ class CalendarState extends State<Calendar> {
         component = new EventView(
           year: config._year,
           month: config._month,
-          day: _eventDate,
+          day: _selectedDay,
           switchViewCallback: _switchView
         );
         break;
