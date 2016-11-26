@@ -8,3 +8,4 @@ ios/.generated/
 packages
 pubspec.lock
 node_modules/
+test.dart
