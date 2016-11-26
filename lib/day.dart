@@ -29,9 +29,9 @@ class Day extends StatelessWidget {
   }
 
   _generateEventRow() {
-    Widget component = new Colomn(
+    Widget component = new Column(
       mainAxisAlignment: MainAxisAlignment.end,
-      childrend: <Widget>[
+      children: <Widget>[
         new EventCalendarRow(eventIcons: _generateEventIcons()),
       ]
     );
