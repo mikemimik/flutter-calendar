@@ -1,0 +1,23 @@
+{
+  "name": "calendar",
+  "version": "0.0.1",
+  "description": "A flutter widget to display a calendar with some events.",
+  "main": "mock-api.js",
+  "scripts": {
+    "start": "node mock-api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikemimik/flutter-calendar.git"
+  },
+  "keywords": [],
+  "author": "Michael Perrotte <mike@mikecorp.ca>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikemimik/flutter-calendar/issues"
+  },
+  "homepage": "https://github.com/mikemimik/flutter-calendar#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
