@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+import 'day.dart';
 
 enum RenderableView { calendar, event }
 
@@ -17,4 +18,4 @@ Map<int, Map<String, String>> MonthNames = {
   11: { 'short': 'Dec', 'long': 'December' }
 };
 
-typedef void ViewCallback({ @required RenderableView view, int date });
+typedef void ViewCallback({ @required RenderableView view, Day selectedDay });
