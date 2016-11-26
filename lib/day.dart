@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'data.dart';
 import 'event.dart';
 import 'view_types.dart';
 
@@ -35,7 +36,7 @@ class Day extends StatelessWidget {
         if (viewCallback != null) {
           viewCallback(
             view: RenderableView.event,
-            date: this.date
+            selectedDay: this
           );
         }
       },
