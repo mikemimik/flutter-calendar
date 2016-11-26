@@ -9,8 +9,11 @@ class EventItem extends StatelessWidget {
 }
 
 class EventCalendarIcon extends StatelessWidget {
-  EventCalendarIcon({ @required Color this.color });
-  final Color color;
+  EventCalendarIcon({
+    @required Color this.bgColor
+  });
+
+  final Color bgColor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class EventCalendarIcon extends StatelessWidget {
       width: 5.0,
       margin: new EdgeInsets.all(0.5),
       decoration: new BoxDecoration(
-        backgroundColor: color
+        backgroundColor: bgColor
       )
     );
   }

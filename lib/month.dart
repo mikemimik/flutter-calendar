@@ -5,13 +5,13 @@ import 'day.dart';
 
 class Month extends StatelessWidget {
   Month({ @required int year, @required int month, @required List<Week> weeks }) {
-    this._year = year;
-    this._month = month;
+    // this._year = year;
+    // this._month = month;
     this._weeks = weeks;
   }
 
-  int _year;
-  int _month;
+  // int _year;
+  // int _month;
   List<Week> _weeks;
   String _dayNameLength = 'short';
   static final _days = {
