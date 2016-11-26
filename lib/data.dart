@@ -42,13 +42,13 @@ class CalendarData {
     for (var event in _data) {
       events.add(new CalendarEvent(event));
     }
+    events.sort((a, b) => (a.day).compareTo(b.day));
     return events;
   }
 }
 
 class CalendarDataFetcher {
   CalendarDataFetcher(this.callback) {
-    // Do some stuff
     _getData();
   }
 
@@ -57,6 +57,7 @@ class CalendarDataFetcher {
   void _getData() {
     http.get(_urlToFetch())
       .then((http.Response response) {
+        // TESTING
         // print('statusCode: ${response.statusCode}');
         // print('response: ${response.body}');
         String json = response.body;
