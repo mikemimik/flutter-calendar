@@ -80,7 +80,7 @@ class CalendarView extends StatelessWidget {
     }
     return monthWeeks;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     DateTime _firstDay = new DateTime(year, month, 1);
@@ -89,7 +89,7 @@ class CalendarView extends StatelessWidget {
     monthDays.insertAll(0, _generateMonthPadding(firstDay: _firstDay));
     monthDays.addAll(_generateMonthPadding(lastDay: _lastDay));
     List<Week> monthWeeks = _generateMonthWeeks(monthDays: monthDays);
-    
+
     Widget component = new Container(
       constraints: new BoxConstraints(),
       margin: new EdgeInsets.all(8.0),
@@ -106,9 +106,9 @@ class CalendarView extends StatelessWidget {
 
 class CalendarViewHeader extends StatelessWidget {
   CalendarViewHeader({ @required String this.monthName });
-  
+
   final String monthName;
-  
+
   @override
   Widget build(BuildContext context) {
     return new Container(
