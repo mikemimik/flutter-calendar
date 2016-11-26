@@ -16,9 +16,9 @@ class Day extends StatelessWidget {
   List<CalendarEvent> _events;
   final ViewCallback viewCallback;
 
-  List<EventCalendarIcon> _generateEventIcons() {
+  List<EventCalendarIcon> _generateEventIcons(int count) {
     List<EventCalendarIcon> eventIcons = new List<EventCalendarIcon>();
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < count; i++) {
       if (_events != null) {
         eventIcons.add(new EventCalendarIcon(bgColor: Colors.red[500]));
       } else {
@@ -28,13 +28,25 @@ class Day extends StatelessWidget {
     return eventIcons;
   }
 
-  _generateEventRow() {
-    Widget component = new Column(
+  Widget _generateEventIconRows() {
+    Column component = new Column(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        new EventCalendarRow(eventIcons: _generateEventIcons()),
-      ]
+      children: <Widget>[]
     );
+    if (_events != null) {
+      double raw = _events.length / 4;
+      double remainder = raw % 2;
+      int extra = (remainder != 0) ? 1 : 0;
+      int rowCount = raw.truncate() + extra;
+      for (int i = 0; i < rowCount; i++) {
+        if (i == rowCount - 1) {
+          int iconCount = _events.length - raw.truncate() * 4;
+          component.children.add(new EventCalendarIconRow(eventIcons: _generateEventIcons(iconCount)));
+        } else {
+          component.children.add(new EventCalendarIconRow(eventIcons: _generateEventIcons(4)));
+        }
+      }
+    }
     return component;
   }
 
@@ -83,7 +95,7 @@ class Day extends StatelessWidget {
                 )
               )
             ),
-            _generateEventRow()
+            _generateEventIconRows()
           ]
         )
       )
