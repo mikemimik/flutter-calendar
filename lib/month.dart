@@ -39,7 +39,7 @@ class Month extends StatelessWidget {
         children: _weeks
       )
     );
-    
+
     return new Flexible(child: component);
   }
 }

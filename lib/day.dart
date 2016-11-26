@@ -13,7 +13,7 @@ class Day extends StatelessWidget {
   final int date;
   final ViewCallback viewCallback;
   final bool today;
-  
+
   List<EventCalendarIcon> _generateEventIcons() {
     List<EventCalendarIcon> eventIcons = <EventCalendarIcon>[];
     for (var i = 0; i < 4; i++) {
@@ -21,7 +21,7 @@ class Day extends StatelessWidget {
     }
     return eventIcons;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle;
@@ -72,7 +72,7 @@ class Day extends StatelessWidget {
         )
       )
     );
-    
+
     return new Flexible(child: component);
   }
 }
@@ -80,10 +80,10 @@ class Day extends StatelessWidget {
 class HeaderDay extends Day {
   HeaderDay({ @required String this.day });
   final String day;
-  
+
   @override
   Widget build(BuildContext context) {
-    
+
     // Make standard component
     Widget component = new Container(
       decoration: new BoxDecoration(
@@ -98,7 +98,7 @@ class HeaderDay extends Day {
         child: new Text(day)
       )
     );
-    
+
     return new Flexible(child: component);
   }
 }

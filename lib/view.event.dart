@@ -9,12 +9,12 @@ class EventView extends StatelessWidget {
     @required int this.day,
     @required ViewCallback this.switchViewCallback
   });
-  
+
   final int year;
   final int month;
   final int day;
   final ViewCallback switchViewCallback;
-  
+
   @override
   Widget build(BuildContext context) {
     Widget component = new Container(
@@ -39,7 +39,7 @@ class EventView extends StatelessWidget {
         )
       )
     );
-    
+
     return component;
   }
 }

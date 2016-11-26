@@ -11,7 +11,7 @@ class EventItem extends StatelessWidget {
 class EventCalendarIcon extends StatelessWidget {
   EventCalendarIcon({ @required Color this.color });
   final Color color;
-  
+
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -28,7 +28,7 @@ class EventCalendarIcon extends StatelessWidget {
 class EventCalendarRow extends StatelessWidget {
   EventCalendarRow({ @required List<EventCalendarIcon> this.eventIcons });
   List<EventCalendarIcon> eventIcons;
-  
+
   @override
   Widget build(BuildContext context) {
     return new Row(
