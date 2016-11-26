@@ -28,8 +28,8 @@ class EventCalendarIcon extends StatelessWidget {
   }
 }
 
-class EventCalendarRow extends StatelessWidget {
-  EventCalendarRow({ @required List<EventCalendarIcon> this.eventIcons });
+class EventCalendarIconRow extends StatelessWidget {
+  EventCalendarIconRow({ @required List<EventCalendarIcon> this.eventIcons });
   List<EventCalendarIcon> eventIcons;
 
   @override
