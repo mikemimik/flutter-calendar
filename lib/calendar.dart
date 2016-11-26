@@ -9,13 +9,14 @@ class Calendar extends StatefulWidget {
     DateTime initializeDate
   }) {
     DateTime date = (initializeDate == null) ? new DateTime.now() : initializeDate;
-    return new Calendar._internal(date.year, date.month);
+    return new Calendar._internal(date.year, date.month, date.day);
   }
   
-  Calendar._internal(this._year, this._month);
+  Calendar._internal(this._year, this._month, this._day);
   
   final int _year;
   final int _month;
+  final int _day;
   
   @override
   CalendarState createState() => new CalendarState();
@@ -53,6 +54,7 @@ class CalendarState extends State<Calendar> {
         component = new CalendarView(
           year: config._year,
           month: config._month,
+          day: config._day,
           switchViewCallback: _switchView
         );
         break;

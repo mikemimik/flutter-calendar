@@ -9,19 +9,25 @@ class CalendarView extends StatelessWidget {
   CalendarView({
     @required int this.year,
     @required int this.month,
+    @required int this.day,
     @required ViewCallback this.switchViewCallback
   });
   
   // VARIABLES
   final int year;
   final int month;
+  final int day;
   final ViewCallback switchViewCallback;
   
   // FUNCTIONS
   List<Day> _generateMonthDays({ @required DateTime firstDay, @required DateTime lastDay }) {
     List<Day> days = <Day>[];
     for (int i = firstDay.day; i <= lastDay.day; i++) {
-      days.add(new Day(date: i, viewCallback: switchViewCallback));
+      if (i == day) {
+        days.add(new Day(date: i, today: true, viewCallback: switchViewCallback));
+      } else {
+        days.add(new Day(date: i, today: false, viewCallback: switchViewCallback));
+      }
     }
     return days;
   }
@@ -34,7 +40,7 @@ class CalendarView extends StatelessWidget {
       DateTime lastDayPrevMonth = new DateTime(year, month, 0);
       if (firstWeekday < 7) { // ignore if sunday (no padding needed)
         for (var i = 0; i < firstWeekday; i++) {
-          days.insert(0, new Day(date: lastDayPrevMonth.day - i));
+          days.insert(0, new Day(date: lastDayPrevMonth.day - i, today: false));
         }
       }
     } else if (lastDay != null) {
@@ -43,7 +49,7 @@ class CalendarView extends StatelessWidget {
       DateTime firstDayNextMonth = new DateTime(year, month + 1, 1);
       var remainingDays = (6 - lastWeekday == -1) ? 6 : (6 - lastWeekday);
       for (var i = 0; i < remainingDays; i++) {
-        days.add(new Day(date: firstDayNextMonth.day + i));
+        days.add(new Day(date: firstDayNextMonth.day + i, today: false));
       }
     }
     return days;
