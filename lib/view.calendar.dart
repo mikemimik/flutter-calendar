@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'view_types.dart';
+import 'data.dart';
 import 'month.dart';
 import 'week.dart';
 import 'day.dart';
@@ -10,6 +11,7 @@ class CalendarView extends StatelessWidget {
     @required int this.year,
     @required int this.month,
     @required int this.day,
+    @required List<CalendarEvent> this.events,
     @required ViewCallback this.switchViewCallback
   });
   
@@ -17,6 +19,7 @@ class CalendarView extends StatelessWidget {
   final int year;
   final int month;
   final int day;
+  final List<CalendarEvent> events;
   final ViewCallback switchViewCallback;
   
   // FUNCTIONS
