@@ -12,8 +12,9 @@ class Day extends StatelessWidget {
   });
 
   final int date;
-  final ViewCallback viewCallback;
   final bool today;
+  List<CalendarEvent> _events;
+  final ViewCallback viewCallback;
 
   List<EventCalendarIcon> _generateEventIcons() {
     List<EventCalendarIcon> eventIcons = new List<EventCalendarIcon>();
@@ -21,6 +22,13 @@ class Day extends StatelessWidget {
       eventIcons.add(new EventCalendarIcon(bgColor: Colors.blue[500]));
     }
     return eventIcons;
+  }
+
+  void addEvent(CalendarEvent event) {
+    if (_events == null) {
+      _events = new List<CalendarEvent>();
+    }
+    _events.add(event);
   }
 
   @override
