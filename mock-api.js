@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const data = require('./mock-data.js');
 
+const PORT = 4000;
+
 router.route('/')
   .get((req, res, next) => {
     res.json(data);
@@ -13,6 +15,6 @@ let app = express();
 
 app.use('/events', router);
 
-app.listen(4000, () => {
-  console.log('api listening on port 4000...');
+app.listen(PORT, () => {
+  console.log(`api listening on port ${PORT}...`);
 });
