@@ -9,7 +9,7 @@ class CalendarView extends StatelessWidget {
     @required int this.day,
     @required List<CalendarEvent> this.events,
     @required ViewCallback this.switchViewCallback,
-    bool this.internalError
+    bool this.internalError: false
   });
 
   factory CalendarView.error({
