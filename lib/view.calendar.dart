@@ -8,8 +8,26 @@ class CalendarView extends StatelessWidget {
     @required int this.month,
     @required int this.day,
     @required List<CalendarEvent> this.events,
-    @required ViewCallback this.switchViewCallback
+    @required ViewCallback this.switchViewCallback,
+    bool this.internalError
   });
+
+  factory CalendarView.error({
+    @required int year,
+    @required int month,
+    @required int day
+  }) {
+    void _noopCallback({ RenderableView view, Day selectedDay }) {}
+
+    return new CalendarView(
+      year: year,
+      month: month,
+      day: day,
+      events: null,
+      switchViewCallback: _noopCallback,
+      internalError: true
+    );
+  }
 
   // VARIABLES
   final int year;
@@ -17,6 +35,7 @@ class CalendarView extends StatelessWidget {
   final int day;
   final List<CalendarEvent> events;
   final ViewCallback switchViewCallback;
+  final bool internalError;
 
   // FUNCTIONS
   List<Day> _attachEvents(List<Day> days, List<CalendarEvent> events) {
@@ -39,7 +58,12 @@ class CalendarView extends StatelessWidget {
         days.add(new Day(date: i, today: false, viewCallback: switchViewCallback));
       }
     }
-    return _attachEvents(days, events);
+    if (!internalError) {
+      return _attachEvents(days, events);
+    } else {
+      return days;
+    }
+
   }
 
   List<Day> _generateMonthPadding({ DateTime firstDay, DateTime lastDay }) {

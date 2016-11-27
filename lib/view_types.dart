@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 import 'package:calendar/core.dart';
 
-enum RenderableView { calendar, event }
+enum RenderableView { calendar, event, error, blank }
 
 Map<int, Map<String, String>> MonthNames = {
   0: { 'short': 'Jan', 'long': 'January' },

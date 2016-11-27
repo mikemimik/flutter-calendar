@@ -1,5 +1,6 @@
 import 'package:flutter/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
 
 typedef void CalendarDataCallback(CalendarData data);
 
@@ -33,7 +34,11 @@ class CalendarEvent {
 }
 
 class CalendarData {
-  CalendarData(this._data);
+  CalendarData({
+    List<Map<String, dynamic>> data
+  }) {
+    this._data = data;
+  }
 
   List<Map<String, dynamic>> _data;
 
@@ -45,6 +50,14 @@ class CalendarData {
     events.sort((a, b) => (a.day).compareTo(b.day));
     return events;
   }
+}
+
+class CalendarDataError extends CalendarData {
+  CalendarDataError({
+    SocketException this.error
+  }) : super();
+
+  final SocketException error;
 }
 
 class CalendarDataFetcher {
@@ -67,11 +80,10 @@ class CalendarDataFetcher {
         }
         JsonDecoder decoder = new JsonDecoder();
         var events = decoder.convert(json);
-        callback(new CalendarData(events));
+        callback(new CalendarData(data: events));
       })
       .catchError((err) {
-        print(err);
-        return;
+        callback(new CalendarDataError(error: err));
       });
   }
 }

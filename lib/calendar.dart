@@ -40,10 +40,16 @@ class CalendarState extends State<Calendar> {
   void initState() {
     super.initState();
     new CalendarDataFetcher((CalendarData data) {
-      setState(() {
-        _events = data.generateEvents();
-        _currentView = RenderableView.calendar;
-      });
+      if (data.runtimeType != CalendarDataError) {
+        setState(() {
+          _events = data.generateEvents();
+          _currentView = RenderableView.calendar;
+        });
+      } else {
+        setState(() {
+          _currentView = RenderableView.error;
+        });
+      }
     });
   }
 
@@ -67,6 +73,29 @@ class CalendarState extends State<Calendar> {
           month: config._month,
           day: _selectedDay,
           switchViewCallback: _switchView
+        );
+        break;
+      case RenderableView.error:
+        component = new AlertDialog(
+          title: new Text('Network Error'),
+          content: new Text('Unable to load events from network'),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text('OKAY'),
+              onPressed: () {
+                setState(() {
+                  _currentView = RenderableView.blank;
+                });
+              }
+            )
+          ]
+        );
+        break;
+      case RenderableView.blank:
+        component = new CalendarView.error(
+          year: config._year,
+          month: config._month,
+          day: config._day
         );
         break;
     }
