@@ -5,14 +5,14 @@ import 'package:calendar/core.dart';
 class Day extends StatelessWidget {
   Day({
     @required int this.date,
-    @required bool this.today,
-    ViewCallback this.viewCallback
+    @required bool this.today
   });
 
   final int date;
   final bool today;
   List<CalendarEvent> _events;
-  final ViewCallback viewCallback;
+  ViewCallback _viewCallback;
+  bool hasEvents = false;
 
   List<EventCalendarIcon> _generateEventIcons(int count) {
     List<EventCalendarIcon> eventIcons = new List<EventCalendarIcon>();
@@ -50,11 +50,16 @@ class Day extends StatelessWidget {
 
   void addEvent(CalendarEvent event) {
     if (_events == null) { _events = new List<CalendarEvent>(); }
+    hasEvents = true;
     _events.add(event);
   }
 
-  List<CalendarEvent>  getEvents() {
+  List<CalendarEvent> getEvents() {
     return _events;
+  }
+
+  void addTapEventHandler({ @required ViewCallback handler }) {
+    _viewCallback = handler;
   }
 
   @override
@@ -67,8 +72,8 @@ class Day extends StatelessWidget {
     }
     Widget component = new InkWell(
       onTap: () {
-        if (viewCallback != null) {
-          viewCallback(
+        if (_viewCallback != null) {
+          _viewCallback(
             view: RenderableView.event,
             selectedDay: this
           );

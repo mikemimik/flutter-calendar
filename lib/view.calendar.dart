@@ -18,7 +18,6 @@ class CalendarView extends StatelessWidget {
     @required int day
   }) {
     void _noopCallback({ RenderableView view, Day selectedDay }) {}
-
     return new CalendarView(
       year: year,
       month: month,
@@ -45,6 +44,9 @@ class CalendarView extends StatelessWidget {
           day.addEvent(event);
         }
       });
+      if (day.hasEvents) {
+        day.addTapEventHandler(handler: switchViewCallback);
+      }
     });
     return days;
   }
@@ -53,9 +55,9 @@ class CalendarView extends StatelessWidget {
     List<Day> days = <Day>[];
     for (int i = firstDay.day; i <= lastDay.day; i++) {
       if (i == day) {
-        days.add(new Day(date: i, today: true, viewCallback: switchViewCallback));
+        days.add(new Day(date: i, today: true));
       } else {
-        days.add(new Day(date: i, today: false, viewCallback: switchViewCallback));
+        days.add(new Day(date: i, today: false));
       }
     }
     if (!internalError) {
