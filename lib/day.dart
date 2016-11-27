@@ -51,10 +51,12 @@ class Day extends StatelessWidget {
   }
 
   void addEvent(CalendarEvent event) {
-    if (_events == null) {
-      _events = new List<CalendarEvent>();
-    }
+    if (_events == null) { _events = new List<CalendarEvent>(); }
     _events.add(event);
+  }
+
+  List<CalendarEvent>  getEvents() {
+    return _events;
   }
 
   @override
