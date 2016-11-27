@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-import 'day.dart';
+import 'package:calendar/core.dart';
 
 enum RenderableView { calendar, event }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'day.dart';
+import 'package:calendar/core.dart';
 
 class Week extends StatelessWidget {
   Week({ @required List<Day> days }) {

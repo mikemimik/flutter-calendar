@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'view_types.dart';
-import 'day.dart';
+import 'package:calendar/core.dart';
 
 class EventView extends StatelessWidget {
   EventView({

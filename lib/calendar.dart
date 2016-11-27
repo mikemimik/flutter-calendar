@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'view.calendar.dart';
-import 'view.event.dart';
-import 'view_types.dart';
-import 'data.dart';
-import 'day.dart';
+import 'package:calendar/core.dart';
 
 class Calendar extends StatefulWidget {
   factory Calendar({

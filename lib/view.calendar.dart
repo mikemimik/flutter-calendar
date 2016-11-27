@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'view_types.dart';
-import 'data.dart';
-import 'month.dart';
-import 'week.dart';
-import 'day.dart';
+import 'package:calendar/core.dart';
 
 class CalendarView extends StatelessWidget {
   CalendarView({
