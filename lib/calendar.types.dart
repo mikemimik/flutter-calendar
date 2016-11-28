@@ -19,3 +19,13 @@ Map<int, Map<String, String>> MonthNames = {
 };
 
 typedef void ViewCallback({ @required RenderableView view, Day selectedDay });
+
+// class ViewData {
+//   ViewData({
+//     RenderableView this.view,
+//     Map this.data
+//   });
+
+//   final RenderableView view;
+//   final Map data;
+// }

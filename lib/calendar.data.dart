@@ -5,7 +5,8 @@ import 'dart:io';
 typedef void CalendarDataCallback(CalendarData data);
 
 String _urlToFetch() {
-  return 'http://localhost:4000/events';
+  return 'http://localhost:4000/events'; // TEST: when using ios simulator
+  // return 'http://10.0.2.2:4000/events'; // TEST: when using android emulator
 }
 
 class CalendarEvent {
@@ -83,6 +84,7 @@ class CalendarDataFetcher {
         callback(new CalendarData(data: events));
       })
       .catchError((err) {
+        print(err); // TESTING
         callback(new CalendarDataError(error: err));
       });
   }

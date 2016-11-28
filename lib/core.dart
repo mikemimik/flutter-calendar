@@ -7,8 +7,8 @@ export 'week.dart';
 export 'day.dart';
 
 // UTILITIES
-export 'data.dart';
-export 'view_types.dart';
+export 'calendar.data.dart';
+export 'calendar.types.dart';
 
 // VIEWS
 export 'view.calendar.dart';
