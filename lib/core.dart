@@ -5,7 +5,6 @@ export 'calendar.dart';
 export 'month.dart';
 export 'week.dart';
 export 'day.dart';
-export 'event.dart';
 
 // UTILITIES
 export 'data.dart';
