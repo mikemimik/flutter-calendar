@@ -38,7 +38,8 @@ class Day extends StatelessWidget {
       int rowCount = raw.truncate() + extra;
       for (int i = 0; i < rowCount; i++) {
         if (i == rowCount - 1) {
-          int iconCount = _events.length - raw.truncate() * 4;
+          int checkCount = _events.length - raw.truncate() * 4;
+          int iconCount = (checkCount == 0) ? 4 : checkCount;
           component.children.add(new CalendarViewEventIconRow(
             eventIcons: _generateEventIcons(iconCount)
           ));
