@@ -1,40 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:calendar/core.dart';
-
-class EventViewItem extends StatelessWidget {
-  EventViewItem({
-    @required CalendarEvent this.item
-  });
-
-  final CalendarEvent item;
-
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      constraints: new BoxConstraints(),
-      margin: new EdgeInsets.all(8.0),
-      child: new Text('title: ${item.title}')
-    );
-  }
-}
-
-class EventViewRow extends StatelessWidget {
-  EventViewRow({
-    @required CalendarEvent this.rowEvent
-  });
-
-  final CalendarEvent rowEvent;
-
-  @override
-  Widget build(BuildContext context) {
-    Row component = new Row(
-      children: <Widget>[]
-    );
-    component.children.add(new EventViewItem(item: rowEvent));
-    return component;
-  }
-}
 
 class EventCalendarIcon extends StatelessWidget {
   EventCalendarIcon({

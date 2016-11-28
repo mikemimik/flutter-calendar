@@ -14,22 +14,52 @@ class EventView extends StatelessWidget {
   final int month;
   final Day day;
   final ViewCallback switchViewCallback;
+  ThemeData _theme;
 
-  Widget _generateHeader() {
+  Widget _generateEventViewHeader() {
     return new Text('Day: ' + MonthNames[month]['long'] + ' ${day.date}, $year');
   }
 
-  Widget _generateEventViewRows() {
-    Column component = new Column(
-      children: <Widget>[]
+  Widget _generateEventViewBody() {
+    Block component = new Block(
+      children: day.getEvents().map(_buildEventViewBodyItem).toList()
     );
-    day.getEvents().forEach((event) {
-      component.children.add(new EventViewRow(rowEvent: event));
-    });
+    return new Flexible(child: component);
+  }
+
+  Widget _buildEventViewBodyItem(CalendarEvent item) {
+    Widget component = new Dismissable(
+      key: new ObjectKey(item),
+      direction: DismissDirection.horizontal,
+      onDismissed: (DismissDirection direction) {},
+      background: new Container(
+        decoration: new BoxDecoration(backgroundColor: _theme.primaryColor),
+        child: new ListItem(
+          leading: new Icon(Icons.delete, color: Colors.white, size: 36.0)
+        )
+      ),
+      secondaryBackground: new Container(
+        decoration: new BoxDecoration(backgroundColor: _theme.primaryColor),
+        child: new ListItem(
+          trailing: new Icon(Icons.archive, color: Colors.white, size: 36.0)
+        )
+      ),
+      child: new Container(
+        decoration: new BoxDecoration(
+          backgroundColor: _theme.canvasColor,
+          border: new Border(bottom: new BorderSide(color: _theme.dividerColor))
+        ),
+        child: new ListItem(
+          title: new Text('${item.title}'),
+          subtitle: new Text('url: ${item.url}'),
+          isThreeLine: true
+        )
+      )
+    );
     return component;
   }
 
-  Widget _generateFooter() {
+  Widget _generateEventViewFooter() {
     return new Container(
       padding: new EdgeInsets.all(8.0),
       child: new RaisedButton(
@@ -45,15 +75,16 @@ class EventView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
     Widget component = new Container(
       constraints: new BoxConstraints(),
       margin: new EdgeInsets.all(8.0),
       child: new Center(
         child: new Column(
           children: <Widget>[
-            _generateHeader(),
-            _generateEventViewRows(),
-            _generateFooter()
+            _generateEventViewHeader(),
+            _generateEventViewBody(),
+            _generateEventViewFooter()
           ]
         )
       )
