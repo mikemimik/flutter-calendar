@@ -36,8 +36,9 @@ class EventView extends StatelessWidget {
       key: new ObjectKey(item),
       direction: DismissDirection.horizontal,
       onDismissed: (DismissDirection direction) {
+        final String action = (direction == DismissDirection.startToEnd) ? 'right' : 'left';
         _scaffold.showSnackBar(new SnackBar(
-          content: new Text('You swiped on ${item.title}'),
+          content: new Text('You swiped ${action} on ${item.title}'),
           action: new SnackBarAction(
             label: 'GOODJOB',
             onPressed: () {}
@@ -47,13 +48,13 @@ class EventView extends StatelessWidget {
       background: new Container(
         decoration: new BoxDecoration(backgroundColor: _theme.primaryColor),
         child: new ListItem(
-          leading: new Icon(Icons.delete, color: Colors.white, size: 36.0)
+          leading: new Icon(Icons.input, color: Colors.white, size: 36.0)
         )
       ),
       secondaryBackground: new Container(
         decoration: new BoxDecoration(backgroundColor: _theme.primaryColor),
         child: new ListItem(
-          trailing: new Icon(Icons.archive, color: Colors.white, size: 36.0)
+          trailing: new Icon(Icons.info, color: Colors.white, size: 36.0)
         )
       ),
       child: new Container(
@@ -72,7 +73,7 @@ class EventView extends StatelessWidget {
   }
 
   Widget _generateEventViewFooter() {
-    return new Container(
+    Widget component = new Container(
       padding: new EdgeInsets.all(8.0),
       margin: new EdgeInsets.only(top: 8.0, bottom: 12.0),
       child: new RaisedButton(
@@ -84,6 +85,7 @@ class EventView extends StatelessWidget {
         }
       )
     );
+    return component;
   }
 
   @override
