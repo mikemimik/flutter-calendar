@@ -5,8 +5,12 @@ import 'dart:io';
 typedef void CalendarDataCallback(CalendarData data);
 
 String _urlToFetch() {
-  return 'http://localhost:4000/events'; // TEST: when using ios simulator
-  // return 'http://10.0.2.2:4000/events'; // TEST: when using android emulator
+  // TEST: when using ios simulator
+  // return 'http://localhost:4000/events';
+  // TEST: when using android emulator
+  // return 'http://10.0.2.2:4000/events';
+  // TESTING: static data
+  return 'https://raw.githubusercontent.com/mikemimik/flutter-calendar/master/data/mock_data.json';
 }
 
 class CalendarEvent {
