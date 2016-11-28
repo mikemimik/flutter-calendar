@@ -15,6 +15,7 @@ class EventView extends StatelessWidget {
   final Day day;
   final ViewCallback switchViewCallback;
   ThemeData _theme;
+  var _scaffold;
 
   Widget _generateEventViewHeader() {
     return new Container(
@@ -34,7 +35,15 @@ class EventView extends StatelessWidget {
     Widget component = new Dismissable(
       key: new ObjectKey(item),
       direction: DismissDirection.horizontal,
-      onDismissed: (DismissDirection direction) {},
+      onDismissed: (DismissDirection direction) {
+        _scaffold.showSnackBar(new SnackBar(
+          content: new Text('You swiped on ${item.title}'),
+          action: new SnackBarAction(
+            label: 'GOODJOB',
+            onPressed: () {}
+          )
+        ));
+      },
       background: new Container(
         decoration: new BoxDecoration(backgroundColor: _theme.primaryColor),
         child: new ListItem(
@@ -80,6 +89,7 @@ class EventView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _theme = Theme.of(context);
+    _scaffold = Scaffold.of(context);
     Widget component = new Container(
       constraints: new BoxConstraints(),
       child: new Center(
