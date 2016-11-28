@@ -143,3 +143,35 @@ class CalendarViewHeader extends StatelessWidget {
     );
   }
 }
+
+class CalendarViewEventIcon extends StatelessWidget {
+  CalendarViewEventIcon({
+    @required Color this.bgColor
+  });
+
+  final Color bgColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 5.0,
+      width: 5.0,
+      margin: new EdgeInsets.all(0.5),
+      decoration: new BoxDecoration(
+        backgroundColor: bgColor
+      )
+    );
+  }
+}
+
+class CalendarViewEventIconRow extends StatelessWidget {
+  CalendarViewEventIconRow({ @required List<CalendarViewEventIcon> this.eventIcons });
+  List<CalendarViewEventIcon> eventIcons;
+
+  @override
+  Widget build(BuildContext context) {
+    return new Row(
+      children: eventIcons
+    );
+  }
+}

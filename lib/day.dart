@@ -14,13 +14,13 @@ class Day extends StatelessWidget {
   ViewCallback _viewCallback;
   bool hasEvents = false;
 
-  List<EventCalendarIcon> _generateEventIcons(int count) {
-    List<EventCalendarIcon> eventIcons = new List<EventCalendarIcon>();
+  List<CalendarViewEventIcon> _generateEventIcons(int count) {
+    List<CalendarViewEventIcon> eventIcons = new List<CalendarViewEventIcon>();
     for (var i = 0; i < count; i++) {
       if (_events != null) {
-        eventIcons.add(new EventCalendarIcon(bgColor: Colors.red[500]));
+        eventIcons.add(new CalendarViewEventIcon(bgColor: Colors.red[500]));
       } else {
-        eventIcons.add(new EventCalendarIcon(bgColor: Colors.blue[500]));
+        eventIcons.add(new CalendarViewEventIcon(bgColor: Colors.blue[500]));
       }
     }
     return eventIcons;
@@ -39,9 +39,13 @@ class Day extends StatelessWidget {
       for (int i = 0; i < rowCount; i++) {
         if (i == rowCount - 1) {
           int iconCount = _events.length - raw.truncate() * 4;
-          component.children.add(new EventCalendarIconRow(eventIcons: _generateEventIcons(iconCount)));
+          component.children.add(new CalendarViewEventIconRow(
+            eventIcons: _generateEventIcons(iconCount)
+          ));
         } else {
-          component.children.add(new EventCalendarIconRow(eventIcons: _generateEventIcons(4)));
+          component.children.add(new CalendarViewEventIconRow(
+            eventIcons: _generateEventIcons(4)
+          ));
         }
       }
     }
