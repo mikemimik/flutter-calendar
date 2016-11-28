@@ -19,12 +19,12 @@ class EventView extends StatelessWidget {
     return new Text('Day: ' + MonthNames[month]['long'] + ' ${day.date}, $year');
   }
 
-  Widget _generateEventRows() {
+  Widget _generateEventViewRows() {
     Column component = new Column(
       children: <Widget>[]
     );
     day.getEvents().forEach((event) {
-      component.children.add(new EventRow(rowEvent: event));
+      component.children.add(new EventViewRow(rowEvent: event));
     });
     return component;
   }
@@ -52,7 +52,7 @@ class EventView extends StatelessWidget {
         child: new Column(
           children: <Widget>[
             _generateHeader(),
-            _generateEventRows(),
+            _generateEventViewRows(),
             _generateFooter()
           ]
         )

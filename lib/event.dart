@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:calendar/core.dart';
 
-class EventItem extends StatelessWidget {
-  EventItem({
+class EventViewItem extends StatelessWidget {
+  EventViewItem({
     @required CalendarEvent this.item
   });
 
@@ -19,8 +19,8 @@ class EventItem extends StatelessWidget {
   }
 }
 
-class EventRow extends StatelessWidget {
-  EventRow({
+class EventViewRow extends StatelessWidget {
+  EventViewRow({
     @required CalendarEvent this.rowEvent
   });
 
@@ -31,7 +31,7 @@ class EventRow extends StatelessWidget {
     Row component = new Row(
       children: <Widget>[]
     );
-    component.children.add(new EventItem(item: rowEvent));
+    component.children.add(new EventViewItem(item: rowEvent));
     return component;
   }
 }
