@@ -17,7 +17,10 @@ class EventView extends StatelessWidget {
   ThemeData _theme;
 
   Widget _generateEventViewHeader() {
-    return new Text('Day: ' + MonthNames[month]['long'] + ' ${day.date}, $year');
+    return new Container(
+      margin: new EdgeInsets.only(top: 12.0),
+      child: new Text('Day: ' + MonthNames[month]['long'] + ' ${day.date}, $year')
+    );
   }
 
   Widget _generateEventViewBody() {
@@ -62,6 +65,7 @@ class EventView extends StatelessWidget {
   Widget _generateEventViewFooter() {
     return new Container(
       padding: new EdgeInsets.all(8.0),
+      margin: new EdgeInsets.only(top: 8.0, bottom: 12.0),
       child: new RaisedButton(
         child: new Text('back to calendar'),
         onPressed: () {
@@ -78,7 +82,6 @@ class EventView extends StatelessWidget {
     _theme = Theme.of(context);
     Widget component = new Container(
       constraints: new BoxConstraints(),
-      margin: new EdgeInsets.all(8.0),
       child: new Center(
         child: new Column(
           children: <Widget>[
