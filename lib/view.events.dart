@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:calendar/core.dart';
 
-class EventView extends StatelessWidget {
-  EventView({
+class EventsView extends StatelessWidget {
+  EventsView({
     @required int this.year,
     @required int this.month,
     @required Day this.day,
@@ -17,21 +17,21 @@ class EventView extends StatelessWidget {
   ThemeData _theme;
   var _scaffold;
 
-  Widget _generateEventViewHeader() {
+  Widget _generateEventsViewHeader() {
     return new Container(
       margin: new EdgeInsets.only(top: 12.0),
       child: new Text('Day: ' + MonthNames[month]['long'] + ' ${day.date}, $year')
     );
   }
 
-  Widget _generateEventViewBody() {
+  Widget _generateEventsViewBody() {
     Block component = new Block(
-      children: day.getEvents().map(_buildEventViewBodyItem).toList()
+      children: day.getEvents().map(_buildEventsViewBodyItem).toList()
     );
     return new Flexible(child: component);
   }
 
-  Widget _buildEventViewBodyItem(CalendarEvent item) {
+  Widget _buildEventsViewBodyItem(CalendarEvent item) {
     Widget component = new Dismissable(
       key: new ObjectKey(item),
       direction: DismissDirection.horizontal,
@@ -72,7 +72,7 @@ class EventView extends StatelessWidget {
     return component;
   }
 
-  Widget _generateEventViewFooter() {
+  Widget _generateEventsViewFooter() {
     Widget component = new Container(
       padding: new EdgeInsets.all(8.0),
       margin: new EdgeInsets.only(top: 8.0, bottom: 12.0),
@@ -97,9 +97,9 @@ class EventView extends StatelessWidget {
       child: new Center(
         child: new Column(
           children: <Widget>[
-            _generateEventViewHeader(),
-            _generateEventViewBody(),
-            _generateEventViewFooter()
+            _generateEventsViewHeader(),
+            _generateEventsViewBody(),
+            _generateEventsViewFooter()
           ]
         )
       )
