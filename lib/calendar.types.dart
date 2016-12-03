@@ -1,7 +1,22 @@
 import 'package:meta/meta.dart';
 import 'package:calendar/core.dart';
 
-enum RenderableView { calendar, event, error, blank }
+enum RenderableView {
+  calendars,
+  calendar,
+  events,
+  event,
+  error,
+  blank
+}
+
+enum ErrorType {
+  network
+}
+
+Map<ErrorType, String> ErrorTypeMessages = {
+  ErrorType.network: 'Network Error'
+};
 
 Map<int, Map<String, String>> MonthNames = {
   0: { 'short': 'Jan', 'long': 'January' },

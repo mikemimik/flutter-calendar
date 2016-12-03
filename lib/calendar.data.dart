@@ -1,4 +1,5 @@
 import 'package:flutter/http.dart' as http;
+import 'package:calendar/core.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -59,10 +60,14 @@ class CalendarData {
 
 class CalendarDataError extends CalendarData {
   CalendarDataError({
-    SocketException this.error
+    SocketException this.error,
+    String this.message,
+    ErrorType this.type
   }) : super();
 
   final SocketException error;
+  final String message;
+  final ErrorType type;
 }
 
 class CalendarDataFetcher {
@@ -84,12 +89,28 @@ class CalendarDataFetcher {
           return;
         }
         JsonDecoder decoder = new JsonDecoder();
-        var events = decoder.convert(json);
-        callback(new CalendarData(data: events));
+        try {
+          var events = decoder.convert(json);
+          callback(new CalendarData(data: events));
+        } on ArgumentError {
+          print('Invalid data received from API call');
+          callback(
+            new CalendarDataError(
+              message: 'Invalid event data from network',
+              type: ErrorType.network
+            )
+          );
+        }
       })
       .catchError((err) {
         print(err); // TESTING
-        callback(new CalendarDataError(error: err));
+        callback(
+          new CalendarDataError(
+            error: err,
+            message: 'Unable to load event from network.',
+            type: ErrorType.network
+          )
+        );
       });
   }
 }

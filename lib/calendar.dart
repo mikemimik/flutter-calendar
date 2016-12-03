@@ -24,6 +24,7 @@ class CalendarState extends State<Calendar> {
   RenderableView _currentView;
   List<CalendarEvent> _events;
   Day _selectedDay;
+  CalendarDataError _error;
 
   void _switchView({
     @required RenderableView view,
@@ -48,6 +49,7 @@ class CalendarState extends State<Calendar> {
       } else {
         setState(() {
           _currentView = RenderableView.error;
+          _error = data;
         });
       }
     });
@@ -77,8 +79,8 @@ class CalendarState extends State<Calendar> {
         break;
       case RenderableView.error:
         component = new AlertDialog(
-          title: new Text('Network Error'),
-          content: new Text('Unable to load events from network'),
+          title: new Text(ErrorTypeMessages[_error.type]),
+          content: new Text(_error.message),
           actions: <Widget>[
             new FlatButton(
               child: new Text('OKAY'),
@@ -97,6 +99,8 @@ class CalendarState extends State<Calendar> {
           month: config._month,
           day: config._day
         );
+        break;
+      default:
         break;
     }
     return new Material(child: component);
