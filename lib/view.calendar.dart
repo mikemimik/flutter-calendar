@@ -40,7 +40,7 @@ class CalendarView extends StatelessWidget {
   List<Day> _attachEvents(List<Day> days, List<CalendarEvent> events) {
     days.forEach((day) {
       events.forEach((event) {
-        if (day.date == event.day) {
+        if (event.day == day.date && event.month == month && event.year == year) {
           day.addEvent(event);
         }
       });

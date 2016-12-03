@@ -20,7 +20,7 @@ class EventsView extends StatelessWidget {
   Widget _generateEventsViewHeader() {
     return new Container(
       margin: new EdgeInsets.only(top: 12.0),
-      child: new Text('Day: ' + MonthNames[month]['long'] + ' ${day.date}, $year')
+      child: new Text('Day: ' + MonthNames[month - 1]['long'] + ' ${day.date}, $year')
     );
   }
 
