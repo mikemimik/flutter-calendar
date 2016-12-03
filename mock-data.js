@@ -8,8 +8,8 @@ for (let i = 1; i <= 16; i++) {
       id: i,
       title: `Event ${i}`,
       url: `/events/${i}`,
-      date_start: '2016-11-25 12:00:00.000',
-      date_end: '2016-11-25 13:00:00.000',
+      date_start: '2016-12-25 12:00:00.000',
+      date_end: '2016-12-25 13:00:00.000',
       details: 'anything'
     });
   } else if (i <= 13) {
@@ -17,8 +17,8 @@ for (let i = 1; i <= 16; i++) {
       id: i,
       title: `Event ${i}`,
       url: `/events/${i}`,
-      date_start: '2016-11-21 12:00:00.000',
-      date_end: '2016-11-21 13:00:00.000',
+      date_start: '2016-12-21 12:00:00.000',
+      date_end: '2016-12-21 13:00:00.000',
       details: {
         foo: 'bar'
       }
@@ -28,8 +28,8 @@ for (let i = 1; i <= 16; i++) {
       id: i,
       title: `Event ${i}`,
       url: `/events/${i}`,
-      date_start: '2016-11-23 12:00:00.000',
-      date_end: '2016-11-23 13:00:00.000',
+      date_start: '2016-12-23 12:00:00.000',
+      date_end: '2016-12-23 13:00:00.000',
       details: 10
     })
   }
