@@ -68,7 +68,7 @@ class CalendarState extends State<Calendar> {
         );
         break;
       case RenderableView.event:
-        component = new EventView(
+        component = new EventsView(
           year: config._year,
           month: config._month,
           day: _selectedDay,
