@@ -69,7 +69,6 @@ class EventsView extends StatelessWidget {
         )
       )
     );
-    // TODO: manually dispose of the dismissable component
     return new InkWell(
       onTap: () {
         print('Tapped ${item.title}');
