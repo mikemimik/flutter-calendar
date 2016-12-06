@@ -41,6 +41,53 @@ class CalendarEvent {
   String toString() {
     return 'Calendar Event (instance): id:${id} | title:${title}';
   }
+
+  String getTime(DateTime time, { bool military: true }) {
+    Map<String, String> hour = _convertHour(time.hour, military: military);
+    String minute = _convertMinute(time.minute);
+    if (military) {
+      return '${hour["hour"]}:${minute}';
+    } else {
+      return '${hour["hour"]}:${minute} ${hour["period"]}';
+    }
+  }
+
+  String getStartTime({ bool military: true }) {
+    return getTime(start, military: military);
+  }
+
+  String getEndTime({ bool military: true }) {
+    return getTime(end, military: military);
+  }
+
+  Map<String, String> _convertHour(int hour, { bool military: true }) {
+    Map<String, String> output = new Map<String, String>();
+    if (military) {
+      output['period'] = null;
+      if (hour < 10) {
+        output['hour'] = '0${hour}';
+      } else {
+        output['hour'] = hour.toString();
+      }
+    } else {
+      if (hour > 12) {
+        output['hour'] = (hour - 12).toString();
+        output['period'] = 'PM';
+      } else {
+        output['hour'] = hour.toString();
+        output['period'] = (hour == 12) ? 'PM' : 'AM';
+      }
+    }
+    return output;
+  }
+
+  String _convertMinute(int minute) {
+    if (minute < 10) {
+      return '0${minute}';
+    } else {
+      return '${minute}';
+    }
+  }
 }
 
 class CalendarData {
