@@ -53,23 +53,44 @@ class EventView extends StatelessWidget {
         backgroundColor: Theme.of(context).accentColor
       ),
       // padding: new EdgeInsets.only(top: 8.0, bottom: 8.0),
-      child: new Row(
-        children: <Widget>[
-          new IconButton(
-            // padding: null,
-            // alignment: null,
-            icon: new Icon(Icons.arrow_back_ios),
-            // color: null,
-            // disabledColor: null,
-            onPressed: () {
-              switchViewCallback(
-                view: RenderableView.events,
-                selectedDay: day
-              );
-            },
-            tooltip: 'Back to events'
-          )
-        ]
+      child: new SizedBox(
+        height: 48.0,
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            new IconButton(
+              size: 36.0,
+              icon: new Icon(Icons.chevron_left, size: 36.0),
+              onPressed: () {
+                switchViewCallback(
+                  view: RenderableView.events,
+                  selectedDay: day
+                );
+              },
+              tooltip: 'Back to events'
+            ),
+            new IconButton(
+              size: 36.0,
+              icon: new Icon(Icons.menu, size: 36.0),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  child: new SimpleDialog(
+                    title: new Center(child: new Text('Options')),
+                    titlePadding: new EdgeInsets.all(12.0),
+                    children: <Widget>[
+                    ],
+                    contentPadding: new EdgeInsets.only(left: 8.0, right: 8.0, bottom: 12.0)
+                  )
+                );
+              }
+            ),
+            new IconButton(
+              icon: new Icon(Icons.ac_unit, size: 0.0),
+              onPressed: null
+            )
+          ]
+        )
       )
     );
     return component;

@@ -100,17 +100,21 @@ class CalendarView extends StatelessWidget {
       decoration: new BoxDecoration(
         backgroundColor: Theme.of(context).accentColor
       ),
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.refresh),
-            onPressed: () {
-              refreshCallback();
-            },
-            tooltip: 'Refresh events'
-          )
-        ]
+      child: new SizedBox(
+        height: 48.0,
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            new IconButton(
+              size: 36.0,
+              icon: new Icon(Icons.refresh, size: 36.0),
+              onPressed: () {
+                refreshCallback();
+              },
+              tooltip: 'Refresh events'
+            )
+          ]
+        )
       )
     );
     return component;

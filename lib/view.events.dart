@@ -89,18 +89,22 @@ class EventsView extends StatelessWidget {
         backgroundColor: _theme.accentColor
       ),
       // padding: new EdgeInsets.only(top: 8.0, bottom: 8.0),
-      child: new Row(
-        children: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              switchViewCallback(
-                view: RenderableView.calendar
-              );
-            },
-            tooltip: 'Back to calendar'
-          )
-        ]
+      child: new SizedBox(
+        height: 48.0,
+        child: new Row(
+          children: <Widget>[
+            new IconButton(
+              size: 36.0,
+              icon: new Icon(Icons.chevron_left, size: 36.0),
+              onPressed: () {
+                switchViewCallback(
+                  view: RenderableView.calendar
+                );
+              },
+              tooltip: 'Back to calendar'
+            )
+          ]
+        )
       )
     );
     return component;
