@@ -52,7 +52,7 @@ class EventView extends StatelessWidget {
       decoration: new BoxDecoration(
         backgroundColor: Theme.of(context).accentColor
       ),
-      // padding: new EdgeInsets.all(12.0),
+      // padding: new EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: new Row(
         children: <Widget>[
           new IconButton(
@@ -67,7 +67,7 @@ class EventView extends StatelessWidget {
                 selectedDay: day
               );
             },
-            tooltip: 'Back to Events'
+            tooltip: 'Back to events'
           )
         ]
       )
