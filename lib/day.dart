@@ -113,6 +113,11 @@ class Day extends StatelessWidget {
 
     return new Flexible(child: component);
   }
+
+  @override
+  String toString() {
+    return 'Day (instance): date:${date} | today:${today}';
+  }
 }
 
 class HeaderDay extends Day {

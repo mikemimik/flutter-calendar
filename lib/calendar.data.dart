@@ -37,6 +37,10 @@ class CalendarEvent {
     day = start.day;
   }
 
+  @override
+  String toString() {
+    return 'Calendar Event (instance): id:${id} | title:${title}';
+  }
 }
 
 class CalendarData {
