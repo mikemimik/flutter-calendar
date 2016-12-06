@@ -18,17 +18,18 @@ class EventsView extends StatelessWidget {
   var _scaffold;
 
   Widget _generateEventsViewHeader() {
-    return new Container(
-      margin: new EdgeInsets.only(top: 12.0),
+    Widget component = new Container(
+      margin: new EdgeInsets.only(top: 12.0, bottom: 12.0),
       child: new Text('Day: ' + MonthNames[month - 1]['long'] + ' ${day.date}, $year')
     );
+    return new Center(child: component);
   }
 
   Widget _generateEventsViewBody() {
     Block component = new Block(
       children: day.getEvents().map(_buildEventsViewBodyItem).toList()
     );
-    return new Flexible(child: component);
+    return new Expanded(child: component);
   }
 
   Widget _buildEventsViewBodyItem(CalendarEvent item) {
@@ -104,14 +105,13 @@ class EventsView extends StatelessWidget {
     _scaffold = Scaffold.of(context);
     Widget component = new Container(
       constraints: new BoxConstraints(),
-      child: new Center(
-        child: new Column(
-          children: <Widget>[
-            _generateEventsViewHeader(),
-            _generateEventsViewBody(),
-            _generateEventsViewFooter()
-          ]
-        )
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          _generateEventsViewHeader(),
+          _generateEventsViewBody(),
+          _generateEventsViewFooter()
+        ]
       )
     );
     return component;
