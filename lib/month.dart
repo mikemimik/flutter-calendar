@@ -34,11 +34,12 @@ class Month extends StatelessWidget {
     _weeks.insert(0, headerWeek);
 
     Widget component = new Container(
+      margin: new EdgeInsets.all(8.0),
       child: new Column(
         children: _weeks
       )
     );
 
-    return new Flexible(child: component);
+    return new Expanded(child: component);
   }
 }
