@@ -33,7 +33,7 @@ class EventView extends StatelessWidget {
         _generateEventViewBodyItem('${event.details}')
       ]
     );
-    return component;
+    return new Flexible(child: component);
   }
 
   Widget _generateEventViewBodyItem(String text) {
@@ -69,6 +69,7 @@ class EventView extends StatelessWidget {
     Widget component = new Container(
       child: new Center(
         child: new Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             _generateEventViewHeader(),
             _generateEventViewBody(),
