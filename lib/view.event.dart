@@ -47,18 +47,29 @@ class EventView extends StatelessWidget {
     return component;
   }
 
-  Widget _generateEventViewFooter() {
+  Widget _generateEventViewFooter(BuildContext context) {
     Widget component = new Container(
-      padding: new EdgeInsets.all(8.0),
-      margin: new EdgeInsets.only(top: 8.0, bottom: 12.0),
-      child: new RaisedButton(
-        child: new Text('back to events'),
-        onPressed: () {
-          switchViewCallback(
-            view: RenderableView.events,
-            selectedDay: day
-          );
-        }
+      decoration: new BoxDecoration(
+        backgroundColor: Theme.of(context).accentColor
+      ),
+      // padding: new EdgeInsets.all(12.0),
+      child: new Row(
+        children: <Widget>[
+          new IconButton(
+            // padding: null,
+            // alignment: null,
+            icon: new Icon(Icons.arrow_back_ios),
+            // color: null,
+            // disabledColor: null,
+            onPressed: () {
+              switchViewCallback(
+                view: RenderableView.events,
+                selectedDay: day
+              );
+            },
+            tooltip: 'Back to Events'
+          )
+        ]
       )
     );
     return component;
