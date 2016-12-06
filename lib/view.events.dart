@@ -85,15 +85,22 @@ class EventsView extends StatelessWidget {
 
   Widget _generateEventsViewFooter() {
     Widget component = new Container(
-      padding: new EdgeInsets.all(8.0),
-      margin: new EdgeInsets.only(top: 8.0, bottom: 12.0),
-      child: new RaisedButton(
-        child: new Text('back to calendar'),
-        onPressed: () {
-          switchViewCallback(
-            view: RenderableView.calendar
-          );
-        }
+      decoration: new BoxDecoration(
+        backgroundColor: _theme.accentColor
+      ),
+      // padding: new EdgeInsets.only(top: 8.0, bottom: 8.0),
+      child: new Row(
+        children: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              switchViewCallback(
+                view: RenderableView.calendar
+              );
+            },
+            tooltip: 'Back to calendar'
+          )
+        ]
       )
     );
     return component;
