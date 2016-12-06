@@ -17,7 +17,7 @@ class CalendarView extends StatelessWidget {
     @required int month,
     @required int day
   }) {
-    void _noopCallback({ RenderableView view, Day selectedDay }) {}
+    void _noopCallback({ RenderableView view, Day selectedDay, CalendarEvent selectedEvent }) {}
     return new CalendarView(
       year: year,
       month: month,

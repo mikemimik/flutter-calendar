@@ -24,16 +24,21 @@ class CalendarState extends State<Calendar> {
   RenderableView _currentView;
   List<CalendarEvent> _events;
   Day _selectedDay;
+  CalendarEvent _selectedEvent = null;
   CalendarDataError _error;
 
   void _switchView({
     @required RenderableView view,
-    Day selectedDay
+    Day selectedDay,
+    CalendarEvent selectedEvent
   }) {
-    print('inside _switchView: ${selectedDay}');
+    print('inside _switchView: move to ${view}');
+    print('inside _switchView: selectedDay - ${selectedDay}');
+    print('inside _switchView: selectedEvent - ${selectedEvent}');
     setState(() {
       _currentView = view;
       _selectedDay = selectedDay;
+      _selectedEvent = selectedEvent;
     });
   }
 
@@ -70,6 +75,13 @@ class CalendarState extends State<Calendar> {
         );
         break;
       case RenderableView.event:
+        component = new EventView(
+          event: _selectedEvent,
+          day: _selectedDay,
+          switchViewCallback: _switchView
+        );
+        break;
+      case RenderableView.events:
         component = new EventsView(
           year: config._year,
           month: config._month,

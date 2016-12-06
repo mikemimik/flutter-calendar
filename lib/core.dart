@@ -13,3 +13,4 @@ export 'calendar.types.dart';
 // VIEWS
 export 'view.calendar.dart';
 export 'view.events.dart';
+export 'view.event.dart';

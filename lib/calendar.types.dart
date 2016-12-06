@@ -33,7 +33,11 @@ Map<int, Map<String, String>> MonthNames = {
   11: { 'short': 'Dec', 'long': 'December' }
 };
 
-typedef void ViewCallback({ @required RenderableView view, Day selectedDay });
+typedef void ViewCallback({
+  @required RenderableView view,
+  Day selectedDay,
+  CalendarEvent selectedEvent
+});
 
 // class ViewData {
 //   ViewData({

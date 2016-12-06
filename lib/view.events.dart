@@ -69,7 +69,18 @@ class EventsView extends StatelessWidget {
         )
       )
     );
-    return component;
+    // TODO: manually dispose of the dismissable component
+    return new InkWell(
+      onTap: () {
+        print('Tapped ${item.title}');
+        switchViewCallback(
+          view: RenderableView.event,
+          selectedDay: day,
+          selectedEvent: item
+        );
+      },
+      child: component
+    );
   }
 
   Widget _generateEventsViewFooter() {

@@ -79,7 +79,7 @@ class Day extends StatelessWidget {
       onTap: () {
         if (_viewCallback != null) {
           _viewCallback(
-            view: RenderableView.event,
+            view: RenderableView.events,
             selectedDay: this
           );
         }
