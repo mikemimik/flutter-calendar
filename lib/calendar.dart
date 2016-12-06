@@ -42,9 +42,7 @@ class CalendarState extends State<Calendar> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
+  void _getData() {
     new CalendarDataFetcher((CalendarData data) {
       if (data.runtimeType != CalendarDataError) {
         setState(() {
@@ -61,6 +59,12 @@ class CalendarState extends State<Calendar> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     Widget component;
@@ -71,7 +75,8 @@ class CalendarState extends State<Calendar> {
           month: config._month,
           day: config._day,
           events: _events,
-          switchViewCallback: _switchView
+          switchViewCallback: _switchView,
+          refreshCallback: _getData
         );
         break;
       case RenderableView.event:
@@ -109,7 +114,8 @@ class CalendarState extends State<Calendar> {
         component = new CalendarView.error(
           year: config._year,
           month: config._month,
-          day: config._day
+          day: config._day,
+          refreshCallback: _getData
         );
         break;
       default:

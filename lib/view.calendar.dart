@@ -9,13 +9,15 @@ class CalendarView extends StatelessWidget {
     @required int this.day,
     @required List<CalendarEvent> this.events,
     @required ViewCallback this.switchViewCallback,
+    @required DataRefreshCallback this.refreshCallback,
     bool this.internalError: false
   });
 
   factory CalendarView.error({
     @required int year,
     @required int month,
-    @required int day
+    @required int day,
+    @required DataRefreshCallback refreshCallback
   }) {
     void _noopCallback({ RenderableView view, Day selectedDay, CalendarEvent selectedEvent }) {}
     return new CalendarView(
@@ -24,6 +26,7 @@ class CalendarView extends StatelessWidget {
       day: day,
       events: null,
       switchViewCallback: _noopCallback,
+      refreshCallback: refreshCallback,
       internalError: true
     );
   }
@@ -34,6 +37,7 @@ class CalendarView extends StatelessWidget {
   final int day;
   final List<CalendarEvent> events;
   final ViewCallback switchViewCallback;
+  final DataRefreshCallback refreshCallback;
   final bool internalError;
 
   // FUNCTIONS
@@ -91,6 +95,27 @@ class CalendarView extends StatelessWidget {
     return days;
   }
 
+  Widget _generateCalendarViewFooter(BuildContext context) {
+    Widget component = new Container(
+      decoration: new BoxDecoration(
+        backgroundColor: Theme.of(context).accentColor
+      ),
+      child: new Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.refresh),
+            onPressed: () {
+              refreshCallback();
+            },
+            tooltip: 'Refresh events'
+          )
+        ]
+      )
+    );
+    return component;
+  }
+
   List<Week> _generateMonthWeeks({ @required List<Day> monthDays }){
     List<Week> monthWeeks = new List<Week>();
     for (var weeknum = 0; weeknum < (monthDays.length / 7); weeknum++) {
@@ -114,11 +139,11 @@ class CalendarView extends StatelessWidget {
 
     Widget component = new Container(
       constraints: new BoxConstraints(),
-      margin: new EdgeInsets.all(8.0),
       child: new Column(
         children: <Widget>[
           new CalendarViewHeader(monthName: MonthNames[month - 1]['long']),
-          new Month(year: year, month: month, weeks: monthWeeks)
+          new Month(year: year, month: month, weeks: monthWeeks),
+          _generateCalendarViewFooter(context)
         ]
       )
     );

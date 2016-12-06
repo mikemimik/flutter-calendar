@@ -39,6 +39,8 @@ typedef void ViewCallback({
   CalendarEvent selectedEvent
 });
 
+typedef void DataRefreshCallback();
+
 // class ViewData {
 //   ViewData({
 //     RenderableView this.view,
