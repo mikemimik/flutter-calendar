@@ -1,4 +1,6 @@
-//
+///
+/// Calendar Exports
+///
 /// The calendar library implements a [Calendar] component with a [CalendarController].
 
 export 'src/calendar/calendar.dart';
