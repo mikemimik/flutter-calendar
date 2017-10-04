@@ -1,37 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-import 'package:calendar/core.dart';
+import 'package:calendar/src/day/day.dart';
 
 class Week extends StatelessWidget {
-  Week({ @required List<Day> days }) {
-    this._days = days;
-  }
+  Week({
+    @required this.days,
+  });
 
-  List<Day> _days;
-
-  @override
-  Widget build(BuildContext context) {
-    Widget component = new Row(
-      children: _days
-    );
-    return component;
-  }
-}
-
-class HeaderWeek extends Week {
-  HeaderWeek({
-    @required List<HeaderDay> days
-  }) {
-    this._days = days;
-  }
-
-  List<HeaderDay> _days;
+  final List<Day> days;
 
   @override
   Widget build(BuildContext context) {
-    Widget component = new Row(
-      children: _days
+    return new Row(
+      children: days,
     );
-    return component;
   }
 }
