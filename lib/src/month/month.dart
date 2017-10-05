@@ -5,7 +5,6 @@ import 'package:flutter_flux/flutter_flux.dart';
 import 'package:calendar/src/week/week_header.dart';
 import 'package:calendar/src/week/week.dart';
 import 'package:calendar/src/day/day.dart';
-import 'package:calendar/controllers.dart';
 import 'package:calendar/utils.dart';
 
 class Month extends StoreWatcher {
@@ -13,13 +12,11 @@ class Month extends StoreWatcher {
     @required this.year,
     @required this.month,
     @required this.date,
-    @required this.controller,
   });
 
   final int year;
   final int month;
   final int date;
-  final MonthController controller;
 
   // Functions
   List<Day> _padMonthBeginning(DateTime firstDay) {

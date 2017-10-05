@@ -31,14 +31,11 @@ enum RenderableView {
   calendar,
   events,
   event,
-  // error,
-  // blank,
 }
 
 enum ControllerType {
   calendar,
   data,
-  month,
 }
 
 typedef String DataCallback();
