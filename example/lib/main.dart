@@ -36,16 +36,6 @@ class Event extends DataModel {
   final dynamic details;
 }
 
-List<DataModel> reduceEvents(List<DataModel> events, Map<String, int> currentDay) {
-  List<Event> filteredEvents = new List.from(events);
-  filteredEvents.retainWhere((Event event) {
-    return (event.year == currentDay['year'] &&
-        event.month == currentDay['month'] &&
-        event.date == currentDay['date']);
-  });
-  return filteredEvents;
-}
-
 EventsView renderEventsHandler(List<DataModel> events, Map<String, int> currentDay) {
   if (events.length == 0) {
     // TODO(mperrotte): handle empty list
@@ -128,9 +118,6 @@ DataController dataController = new DataController(
   parseData: parseDataHandler,
   getUri: getUriHandler,
 );
-MonthController monthController = new MonthController(
-  filterEvents: reduceEvents,
-);
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -144,7 +131,6 @@ void main() {
         body: new Calendar(
           calendarController: calendarController,
           dataController: dataController,
-          monthController: monthController,
         ),
       ),
     ),

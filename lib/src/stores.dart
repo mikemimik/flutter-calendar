@@ -75,14 +75,10 @@ class ControllerStore extends Store {
     triggerOnAction(setDataControllerAction, (DataController controller) {
       _dataController = controller;
     });
-    triggerOnAction(setMonthControllerAction, (MonthController controller) {
-      _monthController = controller;
-    });
   }
 
   CalendarController _calendarController;
   DataController _dataController;
-  MonthController _monthController;
 
   // NOTE(mperrotte): created single selector with type interface
   getController(ControllerType controller) {
@@ -91,8 +87,6 @@ class ControllerStore extends Store {
         return _calendarController;
       case ControllerType.data:
         return _dataController;
-      case ControllerType.month:
-        return _monthController;
     }
   }
 }

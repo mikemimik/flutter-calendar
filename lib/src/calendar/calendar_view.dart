@@ -10,13 +10,11 @@ class CalendarView extends StatelessWidget {
     @required this.year,
     @required this.month,
     @required this.date,
-    @required this.monthController,
   });
 
   final int year;
   final int month;
   final int date;
-  final MonthController monthController;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +26,6 @@ class CalendarView extends StatelessWidget {
             year: year,
             month: month,
             date: date,
-            controller: monthController,
           ),
         ],
       ),

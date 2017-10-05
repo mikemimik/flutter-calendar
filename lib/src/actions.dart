@@ -9,4 +9,3 @@ final Action<Map<String, dynamic>> fetchDataAction = new Action<Map<String, dyna
 
 final Action<CalendarController> setCalendarControllerAction = new Action<CalendarController>();
 final Action<DataController> setDataControllerAction = new Action<DataController>();
-final Action<MonthController> setMonthControllerAction = new Action<MonthController>();

@@ -16,7 +16,6 @@ class Calendar extends StoreWatcher {
     DateTime initializeDate,
     @required this.calendarController,
     @required this.dataController,
-    @required this.monthController,
   })
       : year = (initializeDate == null) ? new DateTime.now().year : initializeDate.year,
         month = (initializeDate == null) ? new DateTime.now().month : initializeDate.month,
@@ -28,7 +27,6 @@ class Calendar extends StoreWatcher {
   final int date;
   final CalendarController calendarController;
   final DataController dataController;
-  final MonthController monthController;
 
   @override
   void initStores(ListenToStore listenToStore) {
@@ -44,7 +42,6 @@ class Calendar extends StoreWatcher {
     // INFO(mperrotte): put controllers into store
     setCalendarControllerAction(calendarController);
     setDataControllerAction(dataController);
-    setMonthControllerAction(monthController);
 
     // INFO(mperrotte): Fetch data after we've initialized the listeners
     String uri = dataController.getUri();
@@ -60,7 +57,6 @@ class Calendar extends StoreWatcher {
           year: year,
           month: month,
           date: date,
-          monthController: monthController,
         );
         break;
       case RenderableView.events:
