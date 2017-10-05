@@ -2,10 +2,51 @@
 
 A flutter widget to display a calendar with some events.
 
-<img src="https://cloud.githubusercontent.com/assets/2818462/20657190/f1573420-b501-11e6-93e3-77b4dc3cebc7.png" alt="flutter-calendar-calendar view" width="320">
-<img src="https://cloud.githubusercontent.com/assets/2818462/20657211/2069e992-b502-11e6-9332-e12a71cb200f.png" alt="flutter-calendar-event view" width="320">
-<img src="https://cloud.githubusercontent.com/assets/2818462/20662204/75493724-b520-11e6-82d6-e3abf992c392.gif" alt="flutter-calendar-funcational-demo" width="320">
+# Usage
 
+```dart
+import 'package:calendar/calendar.dart';
+
+void main() {
+  runApp(
+    new MaterialApp(
+      title: 'Calendar Example',
+      home: new Scaffold(
+        body: new Calendar(
+          calendarController: calendarController,
+          dataController: dataController,
+        ),
+      ),
+    ),
+  );
+}
+```
+
+The component requires two controllers to function. One is a `DataController` and the other is a `CalendarController`.
+
+# Controllers
+## Calendar Controller
+
+In order to give the user of the component control over displaying information. The calendar controller is used to contain render methods (similar to `build` functions on a `Widget`) to customize how the information is displayed.
+```dart
+import 'package:calendar/controllers.dart';
+
+CalendarController calendarController = new CalendarController(
+  renderEvents: renderEventsHandler
+);
+```
+
+#### `renderEvents`
+The `renderEvents` property of the `CalendarController` has the following signature:
+
+```dart
+typedef EventsView RenderEventsCallback(List<DataModel> events, Map<String, int> currentDay);
+```
+
+An implementation looks like:
+```dart
+
+```
 ### Event Data Structure
 
 The structure of the data returned from the API (currently) is as follows:
