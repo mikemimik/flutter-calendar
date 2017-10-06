@@ -47,10 +47,9 @@ EventsView renderEventsHandler(List<DataModel> events) {
         // key needs to be more unique
         key: new ValueKey<int>((events[index] as Event).id),
         direction: DismissDirection.horizontal,
-        onDismissed: (DismissDirection direction) async {
+        onDismissed: (DismissDirection direction) {
           print(direction);
-          events.removeAt(index);
-          // await removeEventAction(index);
+          removeEventAction(index);
           print('done removing');
         },
         onResize: () {
