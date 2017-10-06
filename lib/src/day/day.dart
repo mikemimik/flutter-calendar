@@ -46,6 +46,10 @@ class Day extends StoreWatcher {
       for (int i = 0; i < rowCount; i++) {
         if (i == rowCount - 1) {
           int iconCount = store.eventsByDate[date].length - raw.truncate() * 4;
+          // NOTE(mperrotte): account for the case where it's a full last row
+          if (iconCount == 0) {
+            iconCount = 4;
+          }
           children.add(
             new CalendarViewEventIconRow(
               eventIcons: _generateEventIcons(iconCount),
