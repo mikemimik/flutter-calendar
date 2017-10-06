@@ -63,8 +63,7 @@ class Calendar extends StoreWatcher {
           month: calendarStore.selectedMonth,
           date: calendarStore.selectedDate,
           child: calendarController.renderEvents(
-            calendarStore.events,
-            calendarStore.currentDay,
+            calendarStore.eventsByDate[calendarStore.selectedDate],
           ),
         );
         break;

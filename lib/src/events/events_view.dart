@@ -6,11 +6,9 @@ import 'package:calendar/src/stores.dart';
 class EventsView extends StoreWatcher {
   EventsView({
     @required this.itemBuilder,
-    this.itemCount,
   });
 
   final IndexedWidgetBuilder itemBuilder;
-  final int itemCount;
 
   @override
   void initStores(ListenToStore listenToStore) {
