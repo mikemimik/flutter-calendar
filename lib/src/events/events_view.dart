@@ -19,19 +19,12 @@ class EventsView extends StoreWatcher {
   Widget build(BuildContext context, Map<StoreToken, Store> stores) {
     final CalendarStore calendarStore = stores[calendarStoreToken];
 
-    // return new Container(
-    //   child: new ListView.builder(
-    //     itemExtent: 20.0,
-    //     itemCount: itemCount,
-    //     itemBuilder: itemBuilder,
-    //   ),
-    // );
-    List<Widget> events = new List<Widget>();
-    for (int i = 0; i < itemCount; i++) {
-      events.add(itemBuilder(context, i));
-    }
-    return new ListBody(
-      children: events,
+    return new Container(
+      height: 504.0,
+      child: new ListView.builder(
+        itemCount: calendarStore.eventsByDate[calendarStore.selectedDate].length,
+        itemBuilder: itemBuilder,
+      ),
     );
   }
 }
