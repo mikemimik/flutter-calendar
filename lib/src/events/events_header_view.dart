@@ -1,35 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:calendar/src/types.dart';
-import 'package:calendar/src/actions.dart';
 
-class EventsFooter extends StatelessWidget {
-  EventsFooter(
-    this.theme,
+class EventsHeader extends StatelessWidget {
+  EventsHeader(
+    this.year,
+    this.month,
+    this.date,
   );
 
-  final ThemeData theme;
+  final int year;
+  final int month;
+  final int date;
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      decoration: new BoxDecoration(
-        color: theme.accentColor,
-      ),
-      child: new SizedBox(
-        height: 48.0,
-        child: new Row(
-          children: <Widget>[
-            new IconButton(
-              iconSize: 36.0,
-              icon: new Icon(
-                Icons.chevron_left,
-                size: 36.0,
-              ),
-              onPressed: () {
-                switchViewAction(RenderableView.calendar);
-              },
-            )
-          ],
+    return new Center(
+      child: new Container(
+        constraints: new BoxConstraints(),
+        margin: const EdgeInsets.only(
+          top: 12.0,
+          bottom: 12.0,
+        ),
+        child: new SizedBox(
+          height: 15.0,
+          child: new Text('Day: ' + MonthNames[month - 1]['long'] + ' ${date}, ${year}'),
         ),
       ),
     );
