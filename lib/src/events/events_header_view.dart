@@ -23,7 +23,7 @@ class EventsHeader extends StatelessWidget {
         ),
         child: new SizedBox(
           height: 15.0,
-          child: new Text('Day: ' + MonthNames[month - 1]['long'] + ' ${date}, ${year}'),
+          child: new Text('Day: ' + MonthNames[month - 1]['long'] + ' $date, $year'),
         ),
       ),
     );
