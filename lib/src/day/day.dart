@@ -39,9 +39,9 @@ class Day extends StoreWatcher {
   List<Widget> _generateEventIconRows(CalendarStore store) {
     List<Widget> children = new List<Widget>();
     if (store.eventsByDate[date] != null && store.eventsByDate[date].length != 0) {
-      double rows = store.eventsByDate[date].length / 4;
-      int rowCount = rows.round();
-      double remainder = store.eventsByDate[date].length.remainder(4);
+      num rows = store.eventsByDate[date].length / 4;
+      num rowCount = rows.round();
+      num remainder = store.eventsByDate[date].length.remainder(4);
       for (int i = 0; i < rowCount; i++) {
         if (i == rowCount - 1) {
           int iconCount = (remainder == 0) ? 4 : remainder;
