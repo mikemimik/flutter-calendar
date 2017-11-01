@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:calendar/calendar.dart';
 import 'package:calendar/controllers.dart';
+import 'package:calendar/utils.dart';
 
 Widget appBar = new AppBar(title: new Text('Calendar Example'), backgroundColor: Colors.blue[500]);
 ThemeData theme = new ThemeData(primarySwatch: Colors.blue);
@@ -36,21 +37,24 @@ class Event extends DataModel {
   final dynamic details;
 }
 
-EventsView renderEventsHandler(List<DataModel> events, Map<String, int> currentDay) {
-  if (events.length == 0) {
-    // TODO(mperrotte): handle empty list
-  }
-
-  List<DataModel> eventsByDate = reduceEvents(events, currentDay);
-  List<Event> filteredEvents = new List.from(eventsByDate);
-
+EventsView renderEventsHandler(List<DataModel> events) {
   return new EventsView(
-    itemCount: filteredEvents.length,
     itemBuilder: (BuildContext context, int index) {
+      if (index >= events.length) {
+        return null;
+      }
       return new Dismissible(
-        key: new ObjectKey(filteredEvents[index]),
+        // key needs to be more unique
+        key: new ValueKey<int>((events[index] as Event).id),
         direction: DismissDirection.horizontal,
-        onDismissed: (DismissDirection direction) {},
+        onDismissed: (DismissDirection direction) {
+          print(direction);
+          removeEventAction(index);
+          print('done removing');
+        },
+        onResize: () {
+          print('resize');
+        },
         background: new Container(
           decoration: new BoxDecoration(
             color: theme.primaryColor,
@@ -64,6 +68,7 @@ EventsView renderEventsHandler(List<DataModel> events, Map<String, int> currentD
           ),
         ),
         child: new Container(
+          height: 75.0,
           decoration: new BoxDecoration(
             color: theme.canvasColor,
             border: new Border(
@@ -71,8 +76,8 @@ EventsView renderEventsHandler(List<DataModel> events, Map<String, int> currentD
             ),
           ),
           child: new ListTile(
-            title: new Text(filteredEvents[index].title),
-            subtitle: new Text(filteredEvents[index].url),
+            title: new Text((events[index] as Event).title),
+            subtitle: new Text((events[index] as Event).url),
             isThreeLine: true,
           ),
         ),

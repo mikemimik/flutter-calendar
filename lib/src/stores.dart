@@ -29,6 +29,10 @@ class CalendarStore extends Store {
       _selectedMonth = currentDay['month'];
       _selectedYear = currentDay['year'];
     });
+    triggerOnAction(removeEventAction, (int index) {
+      _events.removeAt(index);
+      _eventsByDate = reduceEvents(_events);
+    });
 
     _fetchDataReducer(Map<String, dynamic> funcs) async {
       dynamic payload = await funcs['payload'];

@@ -25,6 +25,7 @@ class CalendarEventsView extends StatelessWidget {
       child: new Column(
         // crossAxisAlignment: CrossAxisAlignment.stretch,
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: <Widget>[
           new EventsHeader(year, month, date),
           child,

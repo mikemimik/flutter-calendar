@@ -4,9 +4,7 @@ import 'package:flutter_flux/flutter_flux.dart';
 
 import 'package:calendar/src/calendar/calendar_view.dart';
 import 'package:calendar/src/calendar/calendar_events_view.dart';
-import 'package:calendar/src/actions.dart';
-import 'package:calendar/src/stores.dart';
-import 'package:calendar/src/types.dart';
+import 'package:calendar/utils.dart';
 import 'package:calendar/controllers.dart';
 
 // TODO(mperrotte): fetch data
@@ -32,6 +30,14 @@ class Calendar extends StoreWatcher {
   void initStores(ListenToStore listenToStore) {
     listenToStore(calendarStoreToken);
     listenToStore(controllerStoreToken);
+
+    // INFO(mperrotte): Fetch data after we've initialized the listeners
+    String uri = dataController.getUri();
+    dynamic payload = dataController.fetchData(uri);
+    fetchDataAction({
+      'payload': payload,
+      'parseData': dataController.parseData,
+    });
   }
 
   @override
@@ -42,14 +48,6 @@ class Calendar extends StoreWatcher {
     // INFO(mperrotte): put controllers into store
     setCalendarControllerAction(calendarController);
     setDataControllerAction(dataController);
-
-    // INFO(mperrotte): Fetch data after we've initialized the listeners
-    String uri = dataController.getUri();
-    dynamic payload = dataController.fetchData(uri);
-    fetchDataAction({
-      'payload': payload,
-      'parseData': dataController.parseData,
-    });
 
     switch (calendarStore.currentView) {
       case RenderableView.calendar:
@@ -65,8 +63,7 @@ class Calendar extends StoreWatcher {
           month: calendarStore.selectedMonth,
           date: calendarStore.selectedDate,
           child: calendarController.renderEvents(
-            calendarStore.events,
-            calendarStore.currentDay,
+            calendarStore.eventsByDate[calendarStore.selectedDate],
           ),
         );
         break;

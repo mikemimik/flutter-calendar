@@ -39,7 +39,7 @@ enum ControllerType {
 }
 
 typedef String DataCallback();
-typedef EventsView RenderEventsCallback(List<DataModel> events, Map<String, int> currentDay);
+typedef EventsView RenderEventsCallback(List<DataModel> events);
 typedef dynamic FetchDataCallback(String uri);
 typedef String GetDataUriCallback();
 typedef List<DataModel> ParseDataCallback(dynamic payload);
