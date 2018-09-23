@@ -14,8 +14,7 @@ class Day extends StoreWatcher {
     @required this.date,
     List<DataModel> events,
     this.today: false,
-  })
-      : textStyle = today ? new TextStyle(color: Colors.orange[500]) : new TextStyle();
+  }) : textStyle = today ? new TextStyle(color: Colors.orange[500]) : new TextStyle();
 
   final int year;
   final int month;
@@ -78,8 +77,11 @@ class Day extends StoreWatcher {
             ['year', 'month', 'date'],
             [year, month, date],
           );
-          selectDateAction(currentDay);
-          switchViewAction(RenderableView.events);
+          if (calendarStore.eventsByDate[date] != null &&
+              calendarStore.eventsByDate[date].length != 0) {
+            selectDateAction(currentDay);
+            switchViewAction(RenderableView.events);
+          }
         },
         child: new Container(
           height: 60.0,
@@ -101,10 +103,13 @@ class Day extends StoreWatcher {
                   ),
                 ),
               ),
-              new Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: _generateEventIconRows(calendarStore),
-              ),
+              new Container(
+                height: 25.0,
+                child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: _generateEventIconRows(calendarStore),
+                ),
+              )
             ],
           ),
         ),

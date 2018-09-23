@@ -16,8 +16,7 @@ ThemeData theme = new ThemeData(primarySwatch: Colors.blue);
 class Event extends DataModel {
   Event(
     Map<String, dynamic> data,
-  )
-      : id = data['id'],
+  )   : id = data['id'],
         title = data['title'],
         url = data['url'],
         start = DateTime.parse(data['date_start']),
@@ -87,6 +86,7 @@ EventsView renderEventsHandler(List<DataModel> events) {
 }
 
 dynamic fetchDataHandler(String uri) async {
+  print('fetching data...');
   Response response = await get(uri);
   String json = response.body;
   if (json == null) {
@@ -103,7 +103,7 @@ dynamic fetchDataHandler(String uri) async {
   }
 }
 
-List<Event> parseDataHandler(List<Map<String, dynamic>> payload) {
+List<Event> parseDataHandler(List<dynamic> payload) {
   List<Event> events = new List<Event>();
   for (Map<String, dynamic> item in payload) {
     events.add(new Event(item));
