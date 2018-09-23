@@ -103,7 +103,7 @@ class Month extends StoreWatcher {
           children: [
             [generateWeekHeader('short')],
             monthWeeks,
-          ].expand((dynamic week) {
+          ].expand((Iterable<Week> week) {
             return week;
           }).toList(),
         ),
