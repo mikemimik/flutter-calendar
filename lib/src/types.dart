@@ -42,5 +42,5 @@ typedef String DataCallback();
 typedef EventsView RenderEventsCallback(List<DataModel> events);
 typedef dynamic FetchDataCallback(String uri);
 typedef String GetDataUriCallback();
-typedef List<DataModel> ParseDataCallback(dynamic payload);
+typedef List<DataModel> ParseDataCallback(List<dynamic> payload);
 typedef List<DataModel> FilterEventsCallback(List<DataModel> events, Map<String, int> currentDay);
